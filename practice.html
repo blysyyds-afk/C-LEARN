@@ -23,34 +23,116 @@
     <div class="container">
         <div style="grid-column: 1 / -1;">
             <div class="content-card">
-                <h2>章节练习</h2>
+                <h2><span class="card-header">章节练习</span></h2>
                 <div class="lesson-list">
-                    <div class="lesson-card">
+                    <div class="lesson-card" onclick="toggleQuiz(1)">
                         <div class="lesson-title">入门语法专项</div>
                         <div class="lesson-desc">10道选择题，巩固基础概念</div>
                         <span class="lesson-tag">难度：简单</span>
                     </div>
-                    <div class="lesson-card">
+                    <div class="lesson-card" onclick="toggleQuiz(2)">
                         <div class="lesson-title">数据类型运算</div>
                         <div class="lesson-desc">15道题，覆盖整型、浮点型运算</div>
                         <span class="lesson-tag">难度：简单</span>
                     </div>
-                    <div class="lesson-card">
-                        <div class="lesson-title">if分支训练</div>
-                        <div class="lesson-desc">12道题，掌握条件判断逻辑</div>
-                        <span class="lesson-tag">难度：中等</span>
-                    </div>
-                    <div class="lesson-card">
-                        <div class="lesson-title">循环结构进阶</div>
-                        <div class="lesson-desc">for、while循环嵌套练习</div>
-                        <span class="lesson-tag">难度：中等</span>
-                    </div>
                 </div>
             </div>
+
+            <!-- 第一套题 -->
+            <div class="content-card" id="quiz1" style="display:none;">
+                <h2><span class="card-header">入门语法专项</span></h2>
+                
+                <div class="question-block">
+                    <div class="question-title">1. C程序的入口函数是？</div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false)">A. start()</li>
+                        <li onclick="selectOption(this, true)">B. main()</li>
+                        <li onclick="selectOption(this, false)">C. begin()</li>
+                        <li onclick="selectOption(this, false)">D. run()</li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">2. printf 的作用是？</div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false)">A. 输入数据</li>
+                        <li onclick="selectOption(this, true)">B. 输出数据</li>
+                        <li onclick="selectOption(this, false)">C. 定义函数</li>
+                        <li onclick="selectOption(this, false)">D. 声明变量</li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">3. 每行C语句结尾要加什么符号？</div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false)">A. 句号</li>
+                        <li onclick="selectOption(this, false)">B. 逗号</li>
+                        <li onclick="selectOption(this, true)">C. 分号</li>
+                        <li onclick="selectOption(this, false)">D. 冒号</li>
+                    </ul>
+                </div>
+
+                <div class="tip-box">
+                    点击选项即可作答，绿色为正确、红色为错误。
+                </div>
+            </div>
+
+            <!-- 第二套题 -->
+            <div class="content-card" id="quiz2" style="display:none;">
+                <h2><span class="card-header">数据类型运算</span></h2>
+                
+                <div class="question-block">
+                    <div class="question-title">1. 用来存储整数的类型是？</div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, true)">A. int</li>
+                        <li onclick="selectOption(this, false)">B. float</li>
+                        <li onclick="selectOption(this, false)">C. char</li>
+                        <li onclick="selectOption(this, false)">D. double</li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">2. 10 + 3 的结果是？</div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false)">A. 10</li>
+                        <li onclick="selectOption(this, false)">B. 3</li>
+                        <li onclick="selectOption(this, true)">C. 13</li>
+                        <li onclick="selectOption(this, false)">D. 7</li>
+                    </ul>
+                </div>
+            </div>
+
         </div>
     </div>
 
     <img src="assets/mascot.png" class="cat-decor" alt="装饰">
+
+    <script>
+        // 展开/收起题目
+        function toggleQuiz(num) {
+            const quiz = document.getElementById('quiz' + num);
+            quiz.style.display = quiz.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // 选项作答
+        function selectOption(el, isRight) {
+            const siblings = el.parentElement.children;
+            for (let i = 0; i < siblings.length; i++) {
+                siblings[i].style.background = '#fff';
+                siblings[i].style.color = '#1d2129';
+                siblings[i].style.borderColor = '#e5e6eb';
+            }
+            
+            if (isRight) {
+                el.style.background = '#e8ffea';
+                el.style.color = '#007a2f';
+                el.style.borderColor = '#00b42a';
+            } else {
+                el.style.background = '#ffece8';
+                el.style.color = '#b52520';
+                el.style.borderColor = '#f53f3f';
+            }
+        }
+    </script>
 </body>
 </html>
-
