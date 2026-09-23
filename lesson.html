@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C-Learn - 学习工作台</title>
+    <title>C-Learn - <span class="zh">学习工作台</span><span class="en">Learning Workbench</span></title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -12,68 +12,81 @@
             <img src="assets/mascot.png" alt="logo">
             <span>C-Learn</span>
         </div>
-        <ul class="nav-links">
-            <li><a href="index.html">我的</a></li>
-            <li><a href="lesson.html" class="active">学习</a></li>
-            <li><a href="practice.html">练习</a></li>
-            <li><a href="error-book.html">错题本</a></li>
-        </ul>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="index.html"><span class="zh">我的</span><span class="en">My</span></a></li>
+                <li><a href="lesson.html" class="active"><span class="zh">学习</span><span class="en">Learn</span></a></li>
+                <li><a href="practice.html"><span class="zh">练习</span><span class="en">Practice</span></a></li>
+                <li><a href="error-book.html"><span class="zh">错题本</span><span class="en">Error Book</span></a></li>
+            </ul>
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="bilingual">A/中</button>
+                <button class="lang-btn" data-lang="zh">中文</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </div>
     </nav>
 
     <div class="container">
         <aside>
             <div class="sidebar-section">
-                <h3>本章目录</h3>
+                <h3><span class="zh">本章目录</span><span class="en">Contents</span></h3>
                 <ul class="step-list" style="grid-template-columns: 1fr;">
-                    <li>课前诊断</li>
-                    <li>原理讲解</li>
-                    <li>关键拆解</li>
-                    <li>引导练习</li>
-                    <li>章节总结</li>
+                    <li><span class="zh">课前诊断</span><span class="en">Pre-diagnostic</span></li>
+                    <li><span class="zh">原理讲解</span><span class="en">Theory</span></li>
+                    <li><span class="zh">关键拆解</span><span class="en">Key Breakdown</span></li>
+                    <li><span class="zh">引导练习</span><span class="en">Guided Practice</span></li>
+                    <li><span class="zh">主动回忆</span><span class="en">Active Recall</span></li>
+                    <li><span class="zh">独立任务</span><span class="en">Independent Task</span></li>
+                    <li><span class="zh">错题讲解</span><span class="en">Error Review</span></li>
+                    <li><span class="zh">间隔复习</span><span class="en">Spaced Review</span></li>
                 </ul>
             </div>
 
             <div class="sidebar-section">
-                <h3>本章进度</h3>
+                <h3><span class="zh">本章进度</span><span class="en">Progress</span></h3>
                 <div class="progress-item">
                     <div class="progress-header">
-                        <span>完成度</span>
-                        <span>20%</span>
+                        <span><span class="zh">完成度</span><span class="en">Completion</span></span>
+                        <span id="chapterRate">20%</span>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 20%"></div>
+                        <div class="progress-fill" id="chapterBar" style="width: 20%"></div>
                     </div>
                 </div>
                 <div style="margin-top:16px;">
-                    <button class="retry-btn" style="width:100%;" onclick="location.href='practice.html'">去做章节练习</button>
+                    <button class="retry-btn" style="width:100%;" onclick="location.href='practice.html'">
+                        <span class="zh">去做章节练习</span><span class="en">Chapter Practice</span>
+                    </button>
                 </div>
             </div>
         </aside>
 
         <main>
             <div class="content-card">
-                <h2><span class="card-header">学习步骤</span></h2>
+                <h2><span class="card-header"><span class="zh">学习步骤</span><span class="en">Learning Steps</span></span></h2>
                 <ul class="step-list">
-                    <li>课前诊断</li>
-                    <li>原理讲解</li>
-                    <li>关键拆解</li>
-                    <li>引导练习</li>
-                    <li>主动回忆</li>
-                    <li>独立任务</li>
-                    <li>错题讲解</li>
-                    <li>间隔复习</li>
+                    <li><span class="zh">课前诊断</span><span class="en">Pre-diagnostic</span></li>
+                    <li><span class="zh">原理讲解</span><span class="en">Theory</span></li>
+                    <li><span class="zh">关键拆解</span><span class="en">Key Breakdown</span></li>
+                    <li><span class="zh">引导练习</span><span class="en">Guided Practice</span></li>
+                    <li><span class="zh">主动回忆</span><span class="en">Active Recall</span></li>
+                    <li><span class="zh">独立任务</span><span class="en">Independent Task</span></li>
+                    <li><span class="zh">错题讲解</span><span class="en">Error Review</span></li>
+                    <li><span class="zh">间隔复习</span><span class="en">Spaced Review</span></li>
                 </ul>
             </div>
 
+            <!-- 1. 课前诊断 -->
             <div class="content-card" id="diagnose">
-                <h2><span class="card-header">课前诊断</span></h2>
-                <p style="margin-bottom: 20px; font-size: 14px; color: #4e5969;">
-                    在正式学习前，我们先用2-3道题快速检测你的基础水平，找到你的薄弱点，让后续学习更有针对性。
-                    不用紧张，做错了也没关系，这正是我们学习的意义。
+                <h2><span class="card-header"><span class="zh">课前诊断</span><span class="en">Pre-class Diagnostic</span></span></h2>
+                <p style="margin-bottom: 20px; font-size: 14px; color: #6b7280;">
+                    <span class="zh">在正式学习前，先用2-3道题快速检测你的基础水平，找到薄弱点，让后续学习更有针对性。做错了也没关系，这正是学习的意义。</span>
+                    <span class="en">Before we start, let's test your current level with 2-3 questions to find knowledge gaps. It's okay to get them wrong — that's how we learn.</span>
                 </p>
                 
                 <div class="question-block">
-                    <div class="question-title">1. C程序的入口函数通常是？</div>
+                    <div class="question-title">1. <span class="zh">C程序的入口函数通常是？</span><span class="en">What is the entry function of a C program?</span></div>
                     <ul class="option-list">
                         <li onclick="selectOption(this, false, 'C程序的入口函数通常是？', '课前诊断', 'B. main()')">A. start()</li>
                         <li onclick="selectOption(this, true, 'C程序的入口函数通常是？', '课前诊断', 'B. main()')">B. main()</li>
@@ -83,126 +96,174 @@
                 </div>
 
                 <div class="question-block">
-                    <div class="question-title">2. printf的主要作用是？</div>
+                    <div class="question-title">2. <span class="zh">printf的主要作用是？</span><span class="en">What is the main function of printf?</span></div>
                     <ul class="option-list">
-                        <li onclick="selectOption(this, false, 'printf的主要作用是？', '课前诊断', 'B. 输出数据')">A. 输入数据</li>
-                        <li onclick="selectOption(this, true, 'printf的主要作用是？', '课前诊断', 'B. 输出数据')">B. 输出数据</li>
-                        <li onclick="selectOption(this, false, 'printf的主要作用是？', '课前诊断', 'B. 输出数据')">C. 定义函数</li>
-                        <li onclick="selectOption(this, false, 'printf的主要作用是？', '课前诊断', 'B. 输出数据')">D. 结束程序</li>
+                        <li onclick="selectOption(this, false, 'printf的主要作用是？', '课前诊断', 'B. 输出数据')">A. <span class="zh">输入数据</span><span class="en">Input data</span></li>
+                        <li onclick="selectOption(this, true, 'printf的主要作用是？', '课前诊断', 'B. 输出数据')">B. <span class="zh">输出数据</span><span class="en">Output data</span></li>
+                        <li onclick="selectOption(this, false, 'printf的主要作用是？', '课前诊断', 'B. 输出数据')">C. <span class="zh">定义函数</span><span class="en">Define function</span></li>
+                        <li onclick="selectOption(this, false, 'printf的主要作用是？', '课前诊断', 'B. 输出数据')">D. <span class="zh">结束程序</span><span class="en">End program</span></li>
                     </ul>
                 </div>
 
                 <div class="tip-box">
-                    💡 完成诊断后，我们会自动进入原理讲解模块。做错的题目会自动收录到错题本，方便后续复盘。
+                    💡 <span class="zh">完成诊断后自动进入下一模块。做错的题目会自动收录到错题本，方便后续复盘。</span>
+                    <span class="en">Auto-proceed to next module after completion. Wrong answers are saved to Error Book automatically.</span>
                 </div>
             </div>
 
-            <!-- 原理讲解模块 -->
+            <!-- 2. 原理讲解 -->
             <div class="content-card" id="theory">
-                <h2><span class="card-header">原理讲解：C语言程序结构</span></h2>
+                <h2><span class="card-header"><span class="zh">原理讲解：C语言程序结构</span><span class="en">Theory: C Program Structure</span></span></h2>
                 
-                <p style="font-size:15px; margin-bottom:16px; color:#333;">
-                    欢迎来到C语言的世界。在写第一个程序之前，我们先搞懂一个最核心的问题：
-                    <strong>一个C程序到底是由什么组成的？它又是怎么运行起来的？</strong>
+                <p style="font-size:15px; margin-bottom:16px; color:#3a3f47;">
+                    <span class="zh">欢迎来到C语言的世界。在写第一个程序之前，我们先搞懂一个最核心的问题：</span>
+                    <span class="en">Welcome to C language. Before writing your first program, let's answer one core question:</span>
+                    <strong><span class="zh">一个C程序到底由什么组成？它又是怎么运行起来的？</span><span class="en">What makes up a C program, and how does it run?</span></strong>
                 </p>
 
-                <h3 style="font-size:16px; margin:20px 0 12px; color:#165dff;">一、先看一个最简单的C程序</h3>
+                <h3><span class="zh">一、先看一个最简单的C程序</span><span class="en">1. A simplest C program</span></h3>
                 <div class="code-block">
-<span class="comment">// 引入标准输入输出头文件</span><br>
+<span class="comment">// Include standard I/O header file</span><br>
 <span class="keyword">#include</span> &lt;stdio.h&gt;<br><br>
-<span class="comment">// 主函数，程序唯一入口</span><br>
+<span class="comment">// Main function, the only entry of program</span><br>
 <span class="keyword">int</span> main()<br>
 {<br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// 在屏幕上输出一行文字</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Print text to console</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;printf(<span class="comment">"Hello, World!"</span>);<br><br>
-&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// 程序正常结束，返回0</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// Program exits normally with code 0</span><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> 0;<br>
 }
                 </div>
 
-                <h3 style="font-size:16px; margin:20px 0 12px; color:#165dff;">二、逐行拆解：每一行都在做什么？</h3>
-                <p style="margin-bottom:10px;"><strong>1. #include &lt;stdio.h&gt; —— 工具箱的钥匙</strong></p>
-                <p style="font-size:14px; color:#4e5969; margin-bottom:16px; padding-left:16px;">
-                    就像你要画画得先打开画笔盒，printf、scanf这些输入输出函数都放在stdio.h这个"工具箱"里。
-                    这行代码的作用就是告诉编译器："把stdio工具箱给我拿来，我要用里面的工具。"
+                <h3><span class="zh">二、逐行拆解：每一行都在做什么？</span><span class="en">2. Line by line breakdown</span></h3>
+                <p style="margin-bottom:10px;"><strong><span class="zh">1. #include &lt;stdio.h&gt; —— 工具箱的钥匙</span><span class="en">1. #include &lt;stdio.h&gt; — The key to the toolbox</span></strong></p>
+                <p style="font-size:14px; color:#6b7280; margin-bottom:16px; padding-left:16px;">
+                    <span class="zh">就像你要画画得先打开画笔盒，printf、scanf这些输入输出函数都放在stdio.h这个"工具箱"里。这行代码的作用就是告诉编译器："把stdio工具箱给我拿来，我要用里面的工具。"</span>
+                    <span class="en">Like opening a pencil box before drawing. printf and scanf live in the stdio.h "toolbox". This line tells the compiler: "Bring me the stdio toolbox."</span>
                 </p>
 
-                <p style="margin-bottom:10px;"><strong>2. int main() —— 程序的大门</strong></p>
-                <p style="font-size:14px; color:#4e5969; margin-bottom:16px; padding-left:16px;">
-                    main函数是C程序唯一的入口。无论程序有多长、有多少个函数，电脑永远从main函数的第一行开始执行。
-                    前面的int表示这个函数执行完会返回一个整数，用来告诉操作系统程序运行得是否正常。
+                <p style="margin-bottom:10px;"><strong><span class="zh">2. int main() —— 程序的大门</span><span class="en">2. int main() — The gateway of the program</span></strong></p>
+                <p style="font-size:14px; color:#6b7280; margin-bottom:16px; padding-left:16px;">
+                    <span class="zh">main函数是C程序唯一的入口。无论程序有多长、有多少个函数，电脑永远从main函数的第一行开始执行。前面的int表示这个函数执行完会返回一个整数，用来告诉操作系统程序运行得是否正常。</span>
+                    <span class="en">main() is the only entry point. No matter how long the program is, it always starts from main(). The int before means it returns an integer to tell the OS if it ran successfully.</span>
                 </p>
 
-                <p style="margin-bottom:10px;"><strong>3. 花括号 { } —— 代码的边界</strong></p>
-                <p style="font-size:14px; color:#4e5969; margin-bottom:16px; padding-left:16px;">
-                    一对花括号括起来的部分叫做"代码块"，表示这是一个整体。main函数的所有执行语句都要写在这对花括号里面。
-                </p>
-
-                <p style="margin-bottom:10px;"><strong>4. printf("Hello, World!"); —— 真正干活的语句</strong></p>
-                <p style="font-size:14px; color:#4e5969; margin-bottom:16px; padding-left:16px;">
-                    这是一条执行语句，作用是在控制台屏幕上输出双引号里的内容。<br>
-                    ⚠️ 注意末尾的分号 —— 它就像一句话的句号，表示这条指令到此结束。漏掉分号程序会报错。
-                </p>
-
-                <p style="margin-bottom:10px;"><strong>5. return 0; —— 程序的收尾</strong></p>
-                <p style="font-size:14px; color:#4e5969; margin-bottom:16px; padding-left:16px;">
-                    表示main函数执行完毕，返回数值0给操作系统。在C语言的约定里，返回0代表程序正常退出，
-                    返回非0代表程序异常结束。
-                </p>
-
-                <h3 style="font-size:16px; margin:20px 0 12px; color:#165dff;">三、入门必守的三条铁律</h3>
-                <div style="background:#f7f9ff; padding:16px 20px; border-radius:8px; margin-bottom:16px;">
-                    <p style="margin-bottom:8px;">✅ <strong>铁律一：</strong>C语言区分大小写，Main和main是完全不同的两个东西</p>
-                    <p style="margin-bottom:8px;">✅ <strong>铁律二：</strong>每条执行语句必须以分号结尾</p>
-                    <p>✅ <strong>铁律三：</strong>所有符号都必须是英文半角符号</p>
+                <div class="think-box">
+                    💭 <span class="zh">思考：既然程序从main开始执行，那如果写了两个main函数会发生什么？</span>
+                    <span class="en">Think: What happens if you write two main functions?</span>
                 </div>
-
-                <h3 style="font-size:16px; margin:20px 0 12px; color:#ff7d00;">四、新手最容易踩的坑</h3>
-                <div class="tip-box">
-                    ❌ 常见错误1：把分号写成中文分号；<br>
-                    ❌ 常见错误2：漏掉句尾的分号<br>
-                    ❌ 常见错误3：把main写成Main或者MAIN<br>
-                    ❌ 常见错误4：花括号不配对，有头没尾
-                </div>
-
-                <h3 style="font-size:16px; margin:20px 0 12px; color:#00b42a;">五、思考一下</h3>
-                <p style="font-size:14px; color:#333;">
-                    既然程序从main开始执行，那如果我写了两个main函数会发生什么？printf为什么要放在stdio.h里？
-                    带着这些问题，我们进入下一个模块的学习。
-                </p>
             </div>
 
-            <!-- 关键拆解模块 -->
+            <!-- 3. 关键拆解 -->
             <div class="content-card" id="breakdown">
-                <h2><span class="card-header">关键拆解</span></h2>
+                <h2><span class="card-header"><span class="zh">关键拆解</span><span class="en">Key Breakdown</span></span></h2>
                 <div class="lesson-list">
                     <div class="lesson-card">
-                        <div class="lesson-title">main 函数的返回值</div>
+                        <div class="lesson-title"><span class="zh">main 函数的返回值</span><span class="en">main() return value</span></div>
                         <div class="lesson-desc">
-                            return 0 代表程序正常退出，非0代表异常。操作系统会接收这个返回值，
-                            用来判断程序是否运行成功。这是一种程序和系统的对话方式。
+                            <span class="zh">return 0 代表程序正常退出，非0代表异常。操作系统会接收这个返回值，用来判断程序是否运行成功。</span>
+                            <span class="en">Return 0 = normal exit, non-zero = error. OS receives this code to check execution status.</span>
                         </div>
                     </div>
                     <div class="lesson-card">
-                        <div class="lesson-title">printf 格式符</div>
+                        <div class="lesson-title"><span class="zh">printf 格式符</span><span class="en">printf format specifiers</span></div>
                         <div class="lesson-desc">
-                            %d输出整型、%f输出浮点型、%c输出字符、%s输出字符串。
-                            格式符和后面的变量要一一对应，类型不匹配会输出乱码。
+                            <span class="zh">%d输出整型、%f输出浮点型、%c输出字符、%s输出字符串。格式符和后面的变量要一一对应。</span>
+                            <span class="en">%d for int, %f for float, %c for char, %s for string. Must match variable types.</span>
                         </div>
                     </div>
+                </div>
+            </div>
+
+            <!-- 4. 引导练习 -->
+            <div class="content-card" id="guided">
+                <h2><span class="card-header"><span class="zh">引导练习</span><span class="en">Guided Practice</span></span></h2>
+                <p style="margin-bottom: 20px; font-size: 14px; color: #6b7280;">
+                    <span class="zh">跟着提示一步步写，边做边思考，遇到问题再回去看原理部分。</span>
+                    <span class="en">Follow the hints step by step. Think as you code, go back to theory if stuck.</span>
+                </p>
+
+                <div class="question-block">
+                    <div class="question-title">1. <span class="zh">请补全：输出 "Hello C" 的语句</span><span class="en">Fill in: print "Hello C"</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, '输出Hello C的语句', '引导练习', 'B. printf("Hello C");')">A. printf("Hello C")</li>
+                        <li onclick="selectOption(this, true, '输出Hello C的语句', '引导练习', 'B. printf("Hello C");')">B. printf("Hello C");</li>
+                        <li onclick="selectOption(this, false, '输出Hello C的语句', '引导练习', 'B. printf("Hello C");')">C. print("Hello C");</li>
+                        <li onclick="selectOption(this, false, '输出Hello C的语句', '引导练习', 'B. printf("Hello C");')">D. printf('Hello C');</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 5. 主动回忆 -->
+            <div class="content-card" id="recall">
+                <h2><span class="card-header"><span class="zh">主动回忆</span><span class="en">Active Recall</span></span></h2>
+                <p style="margin-bottom: 20px; font-size: 14px; color: #6b7280;">
+                    <span class="zh">不看答案，试着回忆刚才学过的内容，这是强化记忆最有效的方式。</span>
+                    <span class="en">Try to recall what you just learned without looking back. This is the most effective way to strengthen memory.</span>
+                </p>
+
+                <div class="question-block">
+                    <div class="question-title">1. <span class="zh">C语言中，每条执行语句结尾必须加什么？</span><span class="en">What must end every executable statement in C?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, '每条执行语句结尾必须加什么', '主动回忆', 'C. 分号')">A. <span class="zh">句号</span><span class="en">Period</span></li>
+                        <li onclick="selectOption(this, false, '每条执行语句结尾必须加什么', '主动回忆', 'C. 分号')">B. <span class="zh">逗号</span><span class="en">Comma</span></li>
+                        <li onclick="selectOption(this, true, '每条执行语句结尾必须加什么', '主动回忆', 'C. 分号')">C. <span class="zh">分号</span><span class="en">Semicolon</span></li>
+                        <li onclick="selectOption(this, false, '每条执行语句结尾必须加什么', '主动回忆', 'C. 分号')">D. <span class="zh">冒号</span><span class="en">Colon</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 6. 独立任务 -->
+            <div class="content-card" id="task">
+                <h2><span class="card-header"><span class="zh">独立任务</span><span class="en">Independent Task</span></span></h2>
+                <div style="background:#f7f8fa; padding:20px; border-radius:12px;">
+                    <h3 style="margin-top:0;"><span class="zh">任务：编写你的第一个C程序</span><span class="en">Task: Write your first C program</span></h3>
+                    <p style="font-size:14px; margin:12px 0;">
+                        <span class="zh">要求：在屏幕上输出两行文字：</span>
+                        <span class="en">Requirement: print two lines:</span>
+                    </p>
+                    <p style="font-size:14px; padding-left:16px; margin-bottom:12px;">
+                        <span class="zh">第一行：My first C program<br>第二行：I'm learning C</span>
+                        <span class="en">Line 1: My first C program<br>Line 2: I'm learning C</span>
+                    </p>
+                    <div class="tip-box">
+                        💡 <span class="zh">提示：使用 \n 可以换行</span>
+                        <span class="en">Hint: use \n for line break</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. 错题讲解 -->
+            <div class="content-card" id="error-review">
+                <h2><span class="card-header"><span class="zh">错题讲解</span><span class="en">Error Review</span></span></h2>
+                <p style="font-size:14px; color:#6b7280;">
+                    <span class="zh">完成练习后，这里会自动列出你做错的题目和对应的讲解，帮你彻底搞懂薄弱点。</span>
+                    <span class="en">After practice, your wrong answers and explanations will appear here automatically.</span>
+                </p>
+                <div class="empty-state" style="padding:30px 20px;">
+                    <p><span class="zh">暂无错题记录</span><span class="en">No errors yet</span></p>
+                </div>
+            </div>
+
+            <!-- 8. 间隔复习 -->
+            <div class="content-card" id="review">
+                <h2><span class="card-header"><span class="zh">间隔复习</span><span class="en">Spaced Review</span></span></h2>
+                <div class="lesson-list">
                     <div class="lesson-card">
-                        <div class="lesson-title">头文件的本质</div>
+                        <div class="lesson-title"><span class="zh">1天后复习</span><span class="en">Review in 1 day</span></div>
                         <div class="lesson-desc">
-                            头文件里只有函数声明，没有具体实现。真正的实现放在库文件里，
-                            链接阶段会把库文件的代码整合到你的程序中。
+                            <span class="zh">核心概念快速过一遍，强化短期记忆</span>
+                            <span class="en">Quick recap to strengthen short-term memory</span>
                         </div>
+                        <span class="lesson-tag"><span class="zh">待复习</span><span class="en">Pending</span></span>
                     </div>
                     <div class="lesson-card">
-                        <div class="lesson-title">注释的正确用法</div>
+                        <div class="lesson-title"><span class="zh">3天后复习</span><span class="en">Review in 3 days</span></div>
                         <div class="lesson-desc">
-                            注释不参与编译，是写给人看的。好的代码注释说明"为什么这么做"，
-                            而不是复述"代码在做什么"。
+                            <span class="zh">综合练习检测，巩固中期记忆</span>
+                            <span class="en">Comprehensive practice test</span>
                         </div>
+                        <span class="lesson-tag"><span class="zh">待解锁</span><span class="en">Locked</span></span>
                     </div>
                 </div>
             </div>
@@ -210,7 +271,7 @@
         </main>
     </div>
 
-    <img src="assets/mascot.png" class="cat-decor" alt="装饰">
+    <img src="assets/mascot.png" class="cat-decor" alt="decor">
 
     <script src="js/app.js"></script>
 </body>
