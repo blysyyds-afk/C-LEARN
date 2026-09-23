@@ -25,24 +25,27 @@
             <div class="sidebar-section">
                 <h3>本章目录</h3>
                 <ul class="step-list" style="grid-template-columns: 1fr;">
-                    <li>学习步骤</li>
                     <li>课前诊断</li>
                     <li>原理讲解</li>
                     <li>关键拆解</li>
                     <li>引导练习</li>
+                    <li>章节总结</li>
                 </ul>
             </div>
 
             <div class="sidebar-section">
-                <h3>学习进度</h3>
+                <h3>本章进度</h3>
                 <div class="progress-item">
                     <div class="progress-header">
-                        <span>本章完成度</span>
-                        <span>15%</span>
+                        <span>完成度</span>
+                        <span>20%</span>
                     </div>
                     <div class="progress-bar">
-                        <div class="progress-fill" style="width: 15%"></div>
+                        <div class="progress-fill" style="width: 20%"></div>
                     </div>
+                </div>
+                <div style="margin-top:16px;">
+                    <button class="retry-btn" style="width:100%;" onclick="location.href='practice.html'">去做章节练习</button>
                 </div>
             </div>
         </aside>
@@ -62,59 +65,67 @@
                 </ul>
             </div>
 
-            <div class="content-card">
+            <div class="content-card" id="diagnose">
                 <h2><span class="card-header">课前诊断</span></h2>
-                <p style="margin-bottom: 20px; font-size: 14px; color: #4e5969;">用2-3题判断你的当前基础。</p>
+                <p style="margin-bottom: 20px; font-size: 14px; color: #4e5969;">用2-3题快速检测当前基础，找到薄弱点。</p>
                 
                 <div class="question-block">
                     <div class="question-title">1. C程序的入口函数通常是？</div>
                     <ul class="option-list">
-                        <li onclick="selectOption(this, false)">A. start()</li>
-                        <li onclick="selectOption(this, true)">B. main()</li>
-                        <li onclick="selectOption(this, false)">C. begin()</li>
-                        <li onclick="selectOption(this, false)">D. run()</li>
+                        <li onclick="selectOption(this, false, 'C程序的入口函数通常是？', '课前诊断', 'B. main()')">A. start()</li>
+                        <li onclick="selectOption(this, true, 'C程序的入口函数通常是？', '课前诊断', 'B. main()')">B. main()</li>
+                        <li onclick="selectOption(this, false, 'C程序的入口函数通常是？', '课前诊断', 'B. main()')">C. begin()</li>
+                        <li onclick="selectOption(this, false, 'C程序的入口函数通常是？', '课前诊断', 'B. main()')">D. run()</li>
                     </ul>
                 </div>
 
                 <div class="question-block">
                     <div class="question-title">2. printf的主要作用是？</div>
                     <ul class="option-list">
-                        <li onclick="selectOption(this, false)">A. 输入数据</li>
-                        <li onclick="selectOption(this, true)">B. 输出数据</li>
-                        <li onclick="selectOption(this, false)">C. 定义函数</li>
-                        <li onclick="selectOption(this, false)">D. 结束程序</li>
+                        <li onclick="selectOption(this, false, 'printf的主要作用是？', '课前诊断', 'B. 输出数据')">A. 输入数据</li>
+                        <li onclick="selectOption(this, true, 'printf的主要作用是？', '课前诊断', 'B. 输出数据')">B. 输出数据</li>
+                        <li onclick="selectOption(this, false, 'printf的主要作用是？', '课前诊断', 'B. 输出数据')">C. 定义函数</li>
+                        <li onclick="selectOption(this, false, 'printf的主要作用是？', '课前诊断', 'B. 输出数据')">D. 结束程序</li>
                     </ul>
                 </div>
 
                 <div class="tip-box">
-                    先独立思考，不要急着看答案。点击选项即可判对错。
+                    完成后自动进入下一模块，错题同步收录错题本。
                 </div>
             </div>
+
+            <!-- 原理讲解模块 -->
+            <div class="content-card" id="theory">
+                <h2><span class="card-header">原理讲解：C语言程序结构</span></h2>
+                <div style="font-size:14px; line-height:1.8; color:#333;">
+                    <p style="margin-bottom:12px;">一个标准的C程序由预处理指令、主函数、变量声明、语句执行四部分组成。</p>
+                    <p style="margin-bottom:12px;"><strong>1. 预处理指令</strong>：如 #include <stdio.h>，用于引入标准库函数，程序编译前执行。</p>
+                    <p style="margin-bottom:12px;"><strong>2. 主函数 main()</strong>：程序的唯一入口，所有代码从这里开始执行。</p>
+                    <p style="margin-bottom:12px;"><strong>3. 语句与分号</strong>：每条执行语句以分号结尾，代表一条指令的结束。</p>
+                    <p><strong>4. 注释</strong>：// 单行注释，/* */ 多行注释，不参与编译，仅用于说明代码。</p>
+                </div>
+            </div>
+
+            <!-- 关键拆解模块 -->
+            <div class="content-card" id="breakdown">
+                <h2><span class="card-header">关键拆解</span></h2>
+                <div class="lesson-list">
+                    <div class="lesson-card">
+                        <div class="lesson-title">main 函数的返回值</div>
+                        <div class="lesson-desc">return 0 代表程序正常退出，非0代表异常</div>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="lesson-title">printf 格式符</div>
+                        <div class="lesson-desc">%d整型、%f浮点型、%c字符、%s字符串</div>
+                    </div>
+                </div>
+            </div>
+
         </main>
     </div>
 
     <img src="assets/mascot.png" class="cat-decor" alt="装饰">
 
-    <script>
-        // 选项作答
-        function selectOption(el, isRight) {
-            const siblings = el.parentElement.children;
-            for (let i = 0; i < siblings.length; i++) {
-                siblings[i].style.background = '#fff';
-                siblings[i].style.color = '#1d2129';
-                siblings[i].style.borderColor = '#e5e6eb';
-            }
-            
-            if (isRight) {
-                el.style.background = '#e8ffea';
-                el.style.color = '#007a2f';
-                el.style.borderColor = '#00b42a';
-            } else {
-                el.style.background = '#ffece8';
-                el.style.color = '#b52520';
-                el.style.borderColor = '#f53f3f';
-            }
-        }
-    </script>
+    <script src="js/app.js"></script>
 </body>
 </html>
