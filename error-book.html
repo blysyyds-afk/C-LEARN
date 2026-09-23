@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C-Learn - 错题本</title>
+    <title>C-Learn - <span class="zh">错题本</span><span class="en">Error Book</span></title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -12,27 +12,43 @@
             <img src="assets/mascot.png" alt="logo">
             <span>C-Learn</span>
         </div>
-        <ul class="nav-links">
-            <li><a href="index.html">我的</a></li>
-            <li><a href="lesson.html">学习</a></li>
-            <li><a href="practice.html">练习</a></li>
-            <li><a href="error-book.html" class="active">错题本</a></li>
-        </ul>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="index.html"><span class="zh">我的</span><span class="en">My</span></a></li>
+                <li><a href="lesson.html"><span class="zh">学习</span><span class="en">Learn</span></a></li>
+                <li><a href="practice.html"><span class="zh">练习</span><span class="en">Practice</span></a></li>
+                <li><a href="error-book.html" class="active"><span class="zh">错题本</span><span class="en">Error Book</span></a></li>
+            </ul>
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="bilingual">A/中</button>
+                <button class="lang-btn" data-lang="zh">中文</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </div>
     </nav>
 
     <div class="container">
         <div style="grid-column: 1 / -1;">
             <div class="content-card">
-                <h2><span class="card-header">我的错题</span>
-                    <span style="font-size:13px;color:#86909c;font-weight:normal;">共 <span id="wrongCount">0</span> 道错题</span>
+                <h2>
+                    <span class="card-header"><span class="zh">我的错题</span><span class="en">My Errors</span></span>
+                    <span style="font-size:13px;color:#86909c;font-weight:normal;">
+                        <span class="zh">共 <span id="wrongCount">0</span> 道错题</span>
+                        <span class="en"><span id="wrongCount">0</span> errors total</span>
+                    </span>
                 </h2>
                 
                 <!-- 空状态 -->
                 <div class="empty-state" id="emptyState">
-                    <img src="assets/mascot.png" alt="空状态">
-                    <h3>还没有错题记录</h3>
-                    <p style="margin-top: 8px; font-size: 14px; color: #86909c;">完成练习后，做错的题目会自动收录到这里</p>
-                    <button class="retry-btn" style="margin-top: 20px;" onclick="location.href='practice.html'">去做练习</button>
+                    <img src="assets/mascot.png" alt="empty">
+                    <h3><span class="zh">还没有错题记录</span><span class="en">No errors yet</span></h3>
+                    <p style="margin-top: 8px; font-size: 14px; color: #86909c;">
+                        <span class="zh">完成练习后，做错的题目会自动收录到这里</span>
+                        <span class="en">Wrong answers will appear here after practice</span>
+                    </p>
+                    <button class="retry-btn" style="margin-top: 20px;" onclick="location.href='practice.html'">
+                        <span class="zh">去做练习</span><span class="en">Start Practice</span>
+                    </button>
                 </div>
 
                 <!-- 错题列表 -->
@@ -41,11 +57,10 @@
         </div>
     </div>
 
-    <img src="assets/mascot.png" class="cat-decor" alt="装饰">
+    <img src="assets/mascot.png" class="cat-decor" alt="decor">
 
     <script src="js/app.js"></script>
     <script>
-        // 更新错题数量
         const data = CLEARN_DATA.init();
         document.getElementById('wrongCount').textContent = data.wrongQuestions.length;
     </script>
