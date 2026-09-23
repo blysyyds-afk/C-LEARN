@@ -1,76 +1,56 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>练习 · printf 专项训练</title>
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C-Learn - 在线练习</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="navbar">
-    <div class="brand">
-      <img src="assets/mascot.png" alt="布偶猫吉祥物" class="brand-logo" />
-      <span class="brand-name">C-Learn</span>
-    </div>
-    <nav>
-      <a href="index.html">工作台</a>
-      <a href="course.html">课程</a>
-      <a href="practice.html" class="active">练习</a>
-      <a href="wrong-book.html">错题本</a>
-      <a href="review.html">复习</a>
-      <a href="profile.html">我的</a>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="assets/mascot.png" alt="logo">
+            <span>C-Learn</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">我的</a></li>
+            <li><a href="lesson.html">学习</a></li>
+            <li><a href="practice.html" class="active">练习</a></li>
+            <li><a href="error-book.html">错题本</a></li>
+        </ul>
     </nav>
-  </header>
 
-  <main class="practice-page">
-    <section class="practice-header">
-      <h1>printf 专项训练</h1>
-      <p>输出预测 · 填空 · 找错 · 默写 · 代码排序</p>
-    </section>
-    <div class="practice-layout">
-      <div class="question-list">
-        <div class="practice-card" data-type="output_prediction">
-          <h3>输出预测</h3>
-          <pre><code>#include &lt;stdio.h&gt;
-int main() {
-  printf("Hi");
-  return 0;
-}</code></pre>
-          <p>程序运行后输出是什么？</p>
-          <input type="text" placeholder="输入你的答案" />
-          <button class="btn btn-primary">提交</button>
+    <div class="container">
+        <div style="grid-column: 1 / -1;">
+            <div class="content-card">
+                <h2>章节练习</h2>
+                <div class="lesson-list">
+                    <div class="lesson-card">
+                        <div class="lesson-title">入门语法专项</div>
+                        <div class="lesson-desc">10道选择题，巩固基础概念</div>
+                        <span class="lesson-tag">难度：简单</span>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="lesson-title">数据类型运算</div>
+                        <div class="lesson-desc">15道题，覆盖整型、浮点型运算</div>
+                        <span class="lesson-tag">难度：简单</span>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="lesson-title">if分支训练</div>
+                        <div class="lesson-desc">12道题，掌握条件判断逻辑</div>
+                        <span class="lesson-tag">难度：中等</span>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="lesson-title">循环结构进阶</div>
+                        <div class="lesson-desc">for、while循环嵌套练习</div>
+                        <span class="lesson-tag">难度：中等</span>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div class="practice-card" data-type="fill_blank">
-          <h3>代码填空</h3>
-          <pre><code>#include &lt;stdio.h&gt;
-int main() {
-  ________("Hello");
-  return 0;
-}</code></pre>
-          <p>补全输出语句。</p>
-          <input type="text" placeholder="输入缺失代码" />
-          <button class="btn btn-primary">提交</button>
-        </div>
-        <div class="practice-card" data-type="find_error">
-          <h3>找错练习</h3>
-          <pre><code>#include &lt;stdio.h&gt;
-int main() {
-  printf("Hello")
-  return 0;
-}</code></pre>
-          <p>这段程序可能存在什么问题？</p>
-          <input type="text" placeholder="描述错误位置和原因" />
-          <button class="btn btn-primary">提交</button>
-        </div>
-      </div>
-      <aside class="practice-sidebar">
-        <div class="tip-card">
-          <img src="assets/mascot.png" alt="布偶猫学习伙伴" />
-          <p>提交后会记录对错，并自动进入复习队列。</p>
-        </div>
-      </aside>
     </div>
-  </main>
-  <script src="js/app.js"></script>
+
+    <img src="assets/mascot.png" class="cat-decor" alt="装饰">
 </body>
 </html>
+
