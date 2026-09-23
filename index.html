@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- 导航栏 -->
     <nav class="navbar">
         <div class="logo">
             <img src="assets/mascot.png" alt="logo">
@@ -15,7 +14,7 @@
         </div>
         <div class="nav-right">
             <ul class="nav-links">
-                <li><a href="index.html" class="active"><span class="zh">我的</span><span class="en">My</span></a></li>
+                <li><a href="index.html" class="active"><span class="zh">我的</span><span class="en">Mine</span></a></li>
                 <li><a href="lesson.html"><span class="zh">学习</span><span class="en">Learn</span></a></li>
                 <li><a href="practice.html"><span class="zh">练习</span><span class="en">Practice</span></a></li>
                 <li><a href="error-book.html"><span class="zh">错题本</span><span class="en">Error Book</span></a></li>
@@ -29,13 +28,13 @@
     </nav>
 
     <div class="container">
-        <!-- 左侧边栏 -->
         <aside>
             <div class="user-card">
                 <img src="assets/mascot.png" class="avatar" alt="avatar">
                 <div class="username" id="username" title="<span class='zh'>点击修改昵称</span><span class='en'>Click to edit</span>">
                     <span class="zh">新同学</span><span class="en">New Learner</span>
                 </div>
+                <div class="username-tip"><span class="zh">点击修改昵称</span><span class="en">Click to edit nickname</span></div>
                 <div class="user-desc">
                     <span class="zh">C语言学习之旅开启中</span>
                     <span class="en">C Language Learning in Progress</span>
@@ -89,13 +88,12 @@
                     <div style="height:24px; border-radius:4px; background:#f2f3f5;"></div>
                 </div>
                 <p style="font-size:12px; color:#86909c; margin-top:10px; text-align:center;">
-                    <span class="zh">今日已学习 0 分钟</span>
-                    <span class="en">0 min studied today</span>
+                    <span class="zh">今日已学习 <span id="studyMinutes">0</span> 分钟</span>
+                    <span class="en"><span id="studyMinutes">0</span> min studied today</span>
                 </p>
             </div>
         </aside>
 
-        <!-- 右侧主内容 -->
         <main>
             <div class="grid-2">
                 <div class="content-card">
@@ -171,7 +169,7 @@
                                 <h4><span class="zh">暂无错题记录</span><span class="en">No errors yet</span></h4>
                                 <p><span class="zh">完成练习后错题将自动收录</span><span class="en">Auto-collected after practice</span></p>
                             </div>
-                            <button class="retry-btn" onclick="location.href='practice.html'">
+                            <button class="retry-btn pink" onclick="location.href='practice.html'">
                                 <span class="zh">去练习</span><span class="en">Practice</span>
                             </button>
                         </div>
@@ -181,8 +179,8 @@
 
             <div class="content-card">
                 <h2><span class="card-header"><span class="zh">课程体系</span><span class="en">Curriculum</span></span></h2>
-                <div class="lesson-list">
-                    <div class="lesson-card" onclick="location.href='lesson.html'">
+                <div class="lesson-list" id="homeChapterList">
+                    <div class="lesson-card" data-chapter="1" onclick="location.href='lesson.html'">
                         <div class="lesson-title"><span class="zh">第一章：C语言入门</span><span class="en">Ch.1 Intro to C</span></div>
                         <div class="lesson-desc">
                             <span class="zh">认识C语言、程序结构与第一个程序</span>
@@ -190,7 +188,7 @@
                         </div>
                         <span class="lesson-tag"><span class="zh">入门</span><span class="en">Entry</span></span>
                     </div>
-                    <div class="lesson-card locked">
+                    <div class="lesson-card locked" data-chapter="2">
                         <span class="lock-icon">🔒</span>
                         <div class="lesson-title"><span class="zh">第二章：变量与数据类型</span><span class="en">Ch.2 Variables & Types</span></div>
                         <div class="lesson-desc">
@@ -199,7 +197,7 @@
                         </div>
                         <span class="lesson-tag"><span class="zh">基础</span><span class="en">Basic</span></span>
                     </div>
-                    <div class="lesson-card locked">
+                    <div class="lesson-card locked" data-chapter="3">
                         <span class="lock-icon">🔒</span>
                         <div class="lesson-title"><span class="zh">第三章：流程控制</span><span class="en">Ch.3 Flow Control</span></div>
                         <div class="lesson-desc">
@@ -208,14 +206,68 @@
                         </div>
                         <span class="lesson-tag"><span class="zh">核心</span><span class="en">Core</span></span>
                     </div>
-                    <div class="lesson-card locked">
+                    <div class="lesson-card locked" data-chapter="4">
                         <span class="lock-icon">🔒</span>
-                        <div class="lesson-title"><span class="zh">第四章：函数与数组</span><span class="en">Ch.4 Functions & Arrays</span></div>
+                        <div class="lesson-title"><span class="zh">第四章：循环进阶</span><span class="en">Ch.4 Loop Advanced</span></div>
                         <div class="lesson-desc">
-                            <span class="zh">函数定义、参数传递与数组操作</span>
-                            <span class="en">Definition, params & array ops</span>
+                            <span class="zh">嵌套循环、边界处理与经典算法</span>
+                            <span class="en">Nested loops & classic algorithms</span>
                         </div>
-                        <span class="lesson-tag"><span class="zh">进阶</span><span class="en">Advanced</span></span>
+                        <span class="lesson-tag"><span class="zh">中等</span><span class="en">Medium</span></span>
+                    </div>
+                    <div class="lesson-card locked" data-chapter="5">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第五章：函数</span><span class="en">Ch.5 Functions</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">函数定义、参数传递与递归</span>
+                            <span class="en">Definition, params & recursion</span>
+                        </div>
+                        <span class="lesson-tag pink"><span class="zh">进阶</span><span class="en">Advanced</span></span>
+                    </div>
+                    <div class="lesson-card locked" data-chapter="6">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第六章：数组</span><span class="en">Ch.6 Arrays</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">一维数组、二维数组与排序算法</span>
+                            <span class="en">1D/2D arrays & sorting</span>
+                        </div>
+                        <span class="lesson-tag pink"><span class="zh">进阶</span><span class="en">Advanced</span></span>
+                    </div>
+                    <div class="lesson-card locked" data-chapter="7">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第七章：指针</span><span class="en">Ch.7 Pointers</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">地址、指针运算与数组指针</span>
+                            <span class="en">Address, arithmetic & array ptr</span>
+                        </div>
+                        <span class="lesson-tag"><span class="zh">难点</span><span class="en">Hard</span></span>
+                    </div>
+                    <div class="lesson-card locked" data-chapter="8">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第八章：结构体</span><span class="en">Ch.8 Structs</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">自定义类型、结构体数组与链表</span>
+                            <span class="en">Custom types & linked list</span>
+                        </div>
+                        <span class="lesson-tag"><span class="zh">难点</span><span class="en">Hard</span></span>
+                    </div>
+                    <div class="lesson-card locked" data-chapter="9">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第九章：文件操作</span><span class="en">Ch.9 File I/O</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">文件读写、指针定位与缓冲区</span>
+                            <span class="en">Read/write, seek & buffer</span>
+                        </div>
+                        <span class="lesson-tag"><span class="zh">实战</span><span class="en">Practical</span></span>
+                    </div>
+                    <div class="lesson-card locked" data-chapter="10">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第十章：综合实战</span><span class="en">Ch.10 Final Project</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">学生管理系统完整项目</span>
+                            <span class="en">Student management system</span>
+                        </div>
+                        <span class="lesson-tag pink"><span class="zh">通关</span><span class="en">Final</span></span>
                     </div>
                 </div>
             </div>
