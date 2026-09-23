@@ -3,89 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>C-Learn - 我的学习</title>
+    <title>C-Learn - <span class="zh">我的学习</span><span class="en">My Learning</span></title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!-- 导航栏 -->
     <nav class="navbar">
         <div class="logo">
             <img src="assets/mascot.png" alt="logo">
             <span>C-Learn</span>
         </div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">我的</a></li>
-            <li><a href="lesson.html">学习</a></li>
-            <li><a href="practice.html">练习</a></li>
-            <li><a href="error-book.html">错题本</a></li>
-        </ul>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active"><span class="zh">我的</span><span class="en">My</span></a></li>
+                <li><a href="lesson.html"><span class="zh">学习</span><span class="en">Learn</span></a></li>
+                <li><a href="practice.html"><span class="zh">练习</span><span class="en">Practice</span></a></li>
+                <li><a href="error-book.html"><span class="zh">错题本</span><span class="en">Error Book</span></a></li>
+            </ul>
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="bilingual">A/中</button>
+                <button class="lang-btn" data-lang="zh">中文</button>
+                <button class="lang-btn" data-lang="en">EN</button>
+            </div>
+        </div>
     </nav>
 
     <div class="container">
+        <!-- 左侧边栏 -->
         <aside>
             <div class="user-card">
-                <img src="assets/mascot.png" class="avatar" alt="头像">
-                <div class="username" id="username" title="点击修改昵称">新同学</div>
-                <div class="user-desc">C语言学习之旅开启中</div>
+                <img src="assets/mascot.png" class="avatar" alt="avatar">
+                <div class="username" id="username" title="<span class='zh'>点击修改昵称</span><span class='en'>Click to edit</span>">
+                    <span class="zh">新同学</span><span class="en">New Learner</span>
+                </div>
+                <div class="user-desc">
+                    <span class="zh">C语言学习之旅开启中</span>
+                    <span class="en">C Language Learning in Progress</span>
+                </div>
                 <div class="user-stats">
                     <div class="stat-item">
                         <div class="stat-num" id="studyDays">0</div>
-                        <div class="stat-label">学习天数</div>
+                        <div class="stat-label"><span class="zh">学习天数</span><span class="en">Days</span></div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-num" id="finishedLesson">0</div>
-                        <div class="stat-label">完成课程</div>
+                        <div class="stat-label"><span class="zh">完成课程</span><span class="en">Lessons</span></div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-num" id="rightRate">0%</div>
-                        <div class="stat-label">正确率</div>
+                        <div class="stat-label"><span class="zh">正确率</span><span class="en">Accuracy</span></div>
                     </div>
                 </div>
             </div>
 
             <div class="sidebar-section">
-                <h3>遗忘曲线提醒</h3>
+                <h3><span class="zh">遗忘曲线提醒</span><span class="en">Forgetting Curve</span></h3>
                 <ul class="forget-list">
                     <li>
-                        <span>数据类型运算</span>
-                        <span class="level">高危</span>
+                        <span><span class="zh">数据类型运算</span><span class="en">Data Type Ops</span></span>
+                        <span class="level"><span class="zh">高危</span><span class="en">High</span></span>
                     </li>
                     <li>
-                        <span>if分支逻辑</span>
-                        <span class="level medium">中危</span>
+                        <span><span class="zh">if分支逻辑</span><span class="en">If Branch Logic</span></span>
+                        <span class="level medium"><span class="zh">中危</span><span class="en">Medium</span></span>
                     </li>
                     <li>
-                        <span>程序结构</span>
-                        <span class="level medium">中危</span>
+                        <span><span class="zh">程序结构</span><span class="en">Program Structure</span></span>
+                        <span class="level medium"><span class="zh">中危</span><span class="en">Medium</span></span>
                     </li>
                 </ul>
             </div>
 
             <div class="sidebar-section">
-                <h3>学习日历</h3>
+                <h3><span class="zh">学习日历</span><span class="en">Study Calendar</span></h3>
                 <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:4px; text-align:center; font-size:12px; color:#86909c;">
-                    <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+                    <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span><span>S</span><span>S</span>
                 </div>
                 <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin-top:8px;">
                     <div style="height:24px; border-radius:4px; background:#f2f3f5;"></div>
                     <div style="height:24px; border-radius:4px; background:#f2f3f5;"></div>
-                    <div style="height:24px; border-radius:4px; background:#e8f3ff;"></div>
-                    <div style="height:24px; border-radius:4px; background:#e8f3ff;"></div>
-                    <div style="height:24px; border-radius:4px; background:#165dff;"></div>
+                    <div style="height:24px; border-radius:4px; #e6ebf2;"></div>
+                    <div style="height:24px; border-radius:4px; #e6ebf2;"></div>
+                    <div style="height:24px; border-radius:4px; background:#4a6fa5;"></div>
                     <div style="height:24px; border-radius:4px; background:#f2f3f5;"></div>
                     <div style="height:24px; border-radius:4px; background:#f2f3f5;"></div>
                 </div>
-                <p style="font-size:12px; color:#86909c; margin-top:10px; text-align:center;">今日已学习 0 分钟</p>
+                <p style="font-size:12px; color:#86909c; margin-top:10px; text-align:center;">
+                    <span class="zh">今日已学习 0 分钟</span>
+                    <span class="en">0 min studied today</span>
+                </p>
             </div>
         </aside>
 
+        <!-- 右侧主内容 -->
         <main>
             <div class="grid-2">
                 <div class="content-card">
-                    <h2><span class="card-header">学习进度</span></h2>
+                    <h2><span class="card-header"><span class="zh">学习进度</span><span class="en">Learning Progress</span></span></h2>
                     <div class="progress-list">
                         <div class="progress-item">
                             <div class="progress-header">
-                                <span>基础语法</span>
+                                <span><span class="zh">基础语法</span><span class="en">Basic Grammar</span></span>
                                 <span>0%</span>
                             </div>
                             <div class="progress-bar">
@@ -94,7 +112,7 @@
                         </div>
                         <div class="progress-item">
                             <div class="progress-header">
-                                <span>流程控制</span>
+                                <span><span class="zh">流程控制</span><span class="en">Flow Control</span></span>
                                 <span>0%</span>
                             </div>
                             <div class="progress-bar">
@@ -103,7 +121,7 @@
                         </div>
                         <div class="progress-item">
                             <div class="progress-header">
-                                <span>函数与数组</span>
+                                <span><span class="zh">函数与数组</span><span class="en">Functions & Arrays</span></span>
                                 <span>0%</span>
                             </div>
                             <div class="progress-bar">
@@ -114,85 +132,97 @@
                 </div>
 
                 <div class="content-card">
-                    <h2><span class="card-header">能力成长曲线</span></h2>
+                    <h2><span class="card-header"><span class="zh">能力成长曲线</span><span class="en">Growth Curve</span></span></h2>
                     <div class="chart-area" id="chartArea"></div>
                     <div style="display: flex; justify-content: space-around; font-size: 12px; color: #86909c;">
-                        <span>第1天</span>
-                        <span>第2天</span>
-                        <span>第3天</span>
-                        <span>第4天</span>
-                        <span>第5天</span>
-                        <span>第6天</span>
-                        <span>第7天</span>
+                        <span>D1</span><span>D2</span><span>D3</span><span>D4</span><span>D5</span><span>D6</span><span>D7</span>
                     </div>
                     <p style="text-align: center; color: #c9cdd4; font-size: 13px; margin-top: 14px;">
-                        开始学习后自动生成成长曲线
+                        <span class="zh">开始学习后自动生成成长曲线</span>
+                        <span class="en">Auto-generated after you start learning</span>
                     </p>
                 </div>
             </div>
 
             <div class="grid-2">
                 <div class="content-card">
-                    <h2><span class="card-header">今日学习任务</span></h2>
+                    <h2><span class="card-header"><span class="zh">今日学习任务</span><span class="en">Today's Tasks</span></span></h2>
                     <ul class="task-list">
                         <li onclick="location.href='lesson.html'">
                             <span class="task-dot"></span>
-                            <span>完成第一章课前诊断</span>
+                            <span><span class="zh">完成第一章课前诊断</span><span class="en">Finish Ch.1 Pre-diagnostic</span></span>
                         </li>
                         <li onclick="location.href='lesson.html'">
                             <span class="task-dot"></span>
-                            <span>学习程序结构与原理</span>
+                            <span><span class="zh">学习程序结构与原理</span><span class="en">Learn Program Structure</span></span>
                         </li>
                         <li onclick="location.href='practice.html'">
                             <span class="task-dot"></span>
-                            <span>入门语法专项练习</span>
+                            <span><span class="zh">入门语法专项练习</span><span class="en">Basic Grammar Practice</span></span>
                         </li>
                     </ul>
                 </div>
 
                 <div class="content-card">
-                    <h2><span class="card-header">最近错题</span></h2>
+                    <h2><span class="card-header"><span class="zh">最近错题</span><span class="en">Recent Errors</span></span></h2>
                     <div class="error-list">
                         <div class="error-item">
                             <div class="error-info">
-                                <h4>暂无错题记录</h4>
-                                <p>完成练习后错题将自动收录</p>
+                                <h4><span class="zh">暂无错题记录</span><span class="en">No errors yet</span></h4>
+                                <p><span class="zh">完成练习后错题将自动收录</span><span class="en">Auto-collected after practice</span></p>
                             </div>
-                            <button class="retry-btn" onclick="location.href='practice.html'">去练习</button>
+                            <button class="retry-btn" onclick="location.href='practice.html'">
+                                <span class="zh">去练习</span><span class="en">Practice</span>
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="content-card">
-                <h2><span class="card-header">课程体系</span></h2>
+                <h2><span class="card-header"><span class="zh">课程体系</span><span class="en">Curriculum</span></span></h2>
                 <div class="lesson-list">
                     <div class="lesson-card" onclick="location.href='lesson.html'">
-                        <div class="lesson-title">第一章：C语言入门</div>
-                        <div class="lesson-desc">认识C语言、程序结构与第一个程序</div>
-                        <span class="lesson-tag">入门</span>
+                        <div class="lesson-title"><span class="zh">第一章：C语言入门</span><span class="en">Ch.1 Intro to C</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">认识C语言、程序结构与第一个程序</span>
+                            <span class="en">Basics, structure & first program</span>
+                        </div>
+                        <span class="lesson-tag"><span class="zh">入门</span><span class="en">Entry</span></span>
                     </div>
-                    <div class="lesson-card">
-                        <div class="lesson-title">第二章：变量与数据类型</div>
-                        <div class="lesson-desc">整型、浮点型、字符型与变量定义</div>
-                        <span class="lesson-tag">基础</span>
+                    <div class="lesson-card locked">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第二章：变量与数据类型</span><span class="en">Ch.2 Variables & Types</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">整型、浮点型、字符型与变量定义</span>
+                            <span class="en">Int, float, char & variable def</span>
+                        </div>
+                        <span class="lesson-tag"><span class="zh">基础</span><span class="en">Basic</span></span>
                     </div>
-                    <div class="lesson-card">
-                        <div class="lesson-title">第三章：流程控制</div>
-                        <div class="lesson-desc">if分支、for循环、while循环与嵌套</div>
-                        <span class="lesson-tag">核心</span>
+                    <div class="lesson-card locked">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第三章：流程控制</span><span class="en">Ch.3 Flow Control</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">if分支、for循环、while循环与嵌套</span>
+                            <span class="en">If, for, while & nesting</span>
+                        </div>
+                        <span class="lesson-tag"><span class="zh">核心</span><span class="en">Core</span></span>
                     </div>
-                    <div class="lesson-card">
-                        <div class="lesson-title">第四章：函数与数组</div>
-                        <div class="lesson-desc">函数定义、参数传递与数组操作</div>
-                        <span class="lesson-tag">进阶</span>
+                    <div class="lesson-card locked">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第四章：函数与数组</span><span class="en">Ch.4 Functions & Arrays</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">函数定义、参数传递与数组操作</span>
+                            <span class="en">Definition, params & array ops</span>
+                        </div>
+                        <span class="lesson-tag"><span class="zh">进阶</span><span class="en">Advanced</span></span>
                     </div>
                 </div>
             </div>
         </main>
     </div>
 
-    <img src="assets/mascot.png" class="cat-decor" alt="装饰">
+    <img src="assets/mascot.png" class="cat-decor" alt="decor">
 
     <script src="js/app.js"></script>
 </body>
