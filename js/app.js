@@ -1,6 +1,45 @@
-// 全局学习数据管理
+// ==================== 语言管理 ====================
+const LANG = {
+    init() {
+        const saved = localStorage.getItem('clearn_lang') || 'bilingual';
+        this.set(saved);
+        this.bindEvents();
+    },
+
+    set(mode) {
+        const body = document.body;
+        body.classList.remove('lang-zh-only', 'lang-en-only');
+        
+        if (mode === 'zh') {
+            body.classList.add('lang-zh-only');
+        } else if (mode === 'en') {
+            body.classList.add('lang-en-only');
+        }
+        
+        localStorage.setItem('clearn_lang', mode);
+        this.updateButtons(mode);
+    },
+
+    updateButtons(mode) {
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.lang === mode) {
+                btn.classList.add('active');
+            }
+        });
+    },
+
+    bindEvents() {
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                this.set(btn.dataset.lang);
+            });
+        });
+    }
+};
+
+// ==================== 全局学习数据管理 ====================
 const CLEARN_DATA = {
-    // 初始化数据
     init() {
         if (!localStorage.getItem('clearn_data')) {
             localStorage.setItem('clearn_data', JSON.stringify({
@@ -16,21 +55,19 @@ const CLEARN_DATA = {
                     function: 0
                 },
                 wrongQuestions: [],
-                chart: [0,0,0,0,0,0,0]
+                chart: [0,0,0,0,0,0,0],
+                tasksDone: []
             }));
         }
         return JSON.parse(localStorage.getItem('clearn_data'));
     },
 
-    // 保存数据
     save(data) {
         localStorage.setItem('clearn_data', JSON.stringify(data));
     },
 
-    // 添加错题
     addWrongQuestion(question, chapter, answer) {
         const data = this.init();
-        // 去重
         const exist = data.wrongQuestions.find(q => q.question === question);
         if (!exist) {
             data.wrongQuestions.push({
@@ -43,7 +80,6 @@ const CLEARN_DATA = {
         }
     },
 
-    // 更新正确率
     updateRate(isRight) {
         const data = this.init();
         data.totalQuestions++;
@@ -54,7 +90,6 @@ const CLEARN_DATA = {
         this.renderHome();
     },
 
-    // 渲染首页数据
     renderHome() {
         const data = this.init();
         const usernameEl = document.getElementById('username');
@@ -67,7 +102,6 @@ const CLEARN_DATA = {
         if (lessonEl) lessonEl.textContent = data.finishedLessons;
         if (rateEl) rateEl.textContent = data.rightRate;
 
-        // 渲染进度条
         const progressBars = document.querySelectorAll('.progress-fill');
         if (progressBars.length >= 3) {
             progressBars[0].style.width = data.progress.base + '%';
@@ -79,7 +113,6 @@ const CLEARN_DATA = {
         }
     },
 
-    // 渲染错题本
     renderErrorBook() {
         const data = this.init();
         const listEl = document.getElementById('wrongList');
@@ -103,7 +136,7 @@ const CLEARN_DATA = {
                 <div class="error-info">
                     <h4>${item.chapter}</h4>
                     <p>${item.question}</p>
-                    <p style="color:#007a2f; margin-top:4px;">正确答案：${item.rightAnswer}</p>
+                    <p style="color:#6b9e7d; margin-top:4px;">正确答案：${item.rightAnswer}</p>
                 </div>
                 <button class="retry-btn" onclick="CLEARN_DATA.removeWrong(${index})">移除</button>
             `;
@@ -111,27 +144,28 @@ const CLEARN_DATA = {
         });
     },
 
-    // 移除错题
     removeWrong(index) {
         const data = this.init();
         data.wrongQuestions.splice(index, 1);
         this.save(data);
         this.renderErrorBook();
+        document.getElementById('wrongCount').textContent = data.wrongQuestions.length;
     }
 };
 
-// 页面加载时渲染对应数据
+// ==================== 页面初始化 ====================
 document.addEventListener('DOMContentLoaded', function() {
+    LANG.init();
     CLEARN_DATA.init();
     CLEARN_DATA.renderHome();
     CLEARN_DATA.renderErrorBook();
 });
 
-// 用户名编辑
+// ==================== 用户名编辑 ====================
 document.addEventListener('click', function(e) {
     if (e.target.id === 'username') {
         const data = CLEARN_DATA.init();
-        const newName = prompt('请输入你的昵称：', data.username);
+        const newName = prompt('请输入你的昵称 / Enter your nickname:', data.username);
         if (newName && newName.trim()) {
             data.username = newName.trim();
             CLEARN_DATA.save(data);
@@ -140,34 +174,32 @@ document.addEventListener('click', function(e) {
     }
 });
 
-// 全局选项作答函数
+// ==================== 全局选项作答 ====================
 function selectOption(el, isRight, question, chapter, answer) {
     const siblings = el.parentElement.children;
     for (let i = 0; i < siblings.length; i++) {
         siblings[i].style.background = '#fff';
-        siblings[i].style.color = '#1d2129';
+        siblings[i].style.color = '#3a3f47';
         siblings[i].style.borderColor = '#e5e6eb';
         siblings[i].style.pointerEvents = 'none';
     }
     
     if (isRight) {
-        el.style.background = '#e8ffea';
-        el.style.color = '#007a2f';
-        el.style.borderColor = '#00b42a';
+        el.style.background = '#e8f5ea';
+        el.style.color = '#2d7a42';
+        el.style.borderColor = '#6b9e7d';
     } else {
-        el.style.background = '#ffece8';
-        el.style.color = '#b52520';
-        el.style.borderColor = '#f53f3f';
-        // 记录错题
+        el.style.background = '#f5e9e8';
+        el.style.color = '#a85c54';
+        el.style.borderColor = '#c17c74';
         if (question && chapter) {
             CLEARN_DATA.addWrongQuestion(question, chapter, answer);
         }
     }
 
-    // 更新正确率
     CLEARN_DATA.updateRate(isRight);
 
-    // 检查是否是最后一题，完成后跳转下一模块
+    // 最后一题自动滚动到下一模块
     const questionBlock = el.closest('.content-card');
     const allQuestions = questionBlock.querySelectorAll('.question-block');
     const currentQuestion = el.closest('.question-block');
@@ -178,10 +210,9 @@ function selectOption(el, isRight, question, chapter, answer) {
             const nextSection = questionBlock.nextElementSibling;
             if (nextSection) {
                 nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                // 弹出完成提示
                 const tip = document.createElement('div');
-                tip.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#00b42a;color:#fff;padding:10px 20px;border-radius:8px;z-index:999;box-shadow:0 4px 12px rgba(0,180,42,0.3);';
-                tip.textContent = '本部分完成，已进入下一模块';
+                tip.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#6b9e7d;color:#fff;padding:10px 20px;border-radius:8px;z-index:999;box-shadow:0 4px 12px rgba(107,158,125,0.3);';
+                tip.textContent = '本部分完成 / Section completed';
                 document.body.appendChild(tip);
                 setTimeout(() => tip.remove(), 2000);
             }
@@ -189,7 +220,7 @@ function selectOption(el, isRight, question, chapter, answer) {
     }
 }
 
-// 展开收起题目
+// ==================== 展开收起题目 ====================
 function toggleQuiz(num) {
     const quiz = document.getElementById('quiz' + num);
     quiz.style.display = quiz.style.display === 'none' ? 'block' : 'none';
