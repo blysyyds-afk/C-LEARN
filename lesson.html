@@ -21,9 +21,35 @@
     </nav>
 
     <div class="container">
-        <div style="grid-column: 1 / -1;">
+        <aside>
+            <div class="sidebar-section">
+                <h3>本章目录</h3>
+                <ul class="step-list" style="grid-template-columns: 1fr;">
+                    <li>学习步骤</li>
+                    <li>课前诊断</li>
+                    <li>原理讲解</li>
+                    <li>关键拆解</li>
+                    <li>引导练习</li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>学习进度</h3>
+                <div class="progress-item">
+                    <div class="progress-header">
+                        <span>本章完成度</span>
+                        <span>15%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 15%"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <main>
             <div class="content-card">
-                <h2>学习步骤</h2>
+                <h2><span class="card-header">学习步骤</span></h2>
                 <ul class="step-list">
                     <li>课前诊断</li>
                     <li>原理讲解</li>
@@ -37,37 +63,58 @@
             </div>
 
             <div class="content-card">
-                <h2>课前诊断</h2>
-                <p style="margin-bottom: 20px; font-size: 14px; color: #666;">用2-3题判断你的当前基础。</p>
+                <h2><span class="card-header">课前诊断</span></h2>
+                <p style="margin-bottom: 20px; font-size: 14px; color: #4e5969;">用2-3题判断你的当前基础。</p>
                 
                 <div class="question-block">
                     <div class="question-title">1. C程序的入口函数通常是？</div>
                     <ul class="option-list">
-                        <li>A. start()</li>
-                        <li>B. main()</li>
-                        <li>C. begin()</li>
-                        <li>D. run()</li>
+                        <li onclick="selectOption(this, false)">A. start()</li>
+                        <li onclick="selectOption(this, true)">B. main()</li>
+                        <li onclick="selectOption(this, false)">C. begin()</li>
+                        <li onclick="selectOption(this, false)">D. run()</li>
                     </ul>
                 </div>
 
                 <div class="question-block">
                     <div class="question-title">2. printf的主要作用是？</div>
                     <ul class="option-list">
-                        <li>A. 输入数据</li>
-                        <li>B. 输出数据</li>
-                        <li>C. 定义函数</li>
-                        <li>D. 结束程序</li>
+                        <li onclick="selectOption(this, false)">A. 输入数据</li>
+                        <li onclick="selectOption(this, true)">B. 输出数据</li>
+                        <li onclick="selectOption(this, false)">C. 定义函数</li>
+                        <li onclick="selectOption(this, false)">D. 结束程序</li>
                     </ul>
                 </div>
 
                 <div class="tip-box">
-                    先独立思考，不要急着看答案。
+                    先独立思考，不要急着看答案。点击选项即可判对错。
                 </div>
             </div>
-        </div>
+        </main>
     </div>
 
     <img src="assets/mascot.png" class="cat-decor" alt="装饰">
+
+    <script>
+        // 选项作答
+        function selectOption(el, isRight) {
+            const siblings = el.parentElement.children;
+            for (let i = 0; i < siblings.length; i++) {
+                siblings[i].style.background = '#fff';
+                siblings[i].style.color = '#1d2129';
+                siblings[i].style.borderColor = '#e5e6eb';
+            }
+            
+            if (isRight) {
+                el.style.background = '#e8ffea';
+                el.style.color = '#007a2f';
+                el.style.borderColor = '#00b42a';
+            } else {
+                el.style.background = '#ffece8';
+                el.style.color = '#b52520';
+                el.style.borderColor = '#f53f3f';
+            }
+        }
+    </script>
 </body>
 </html>
-
