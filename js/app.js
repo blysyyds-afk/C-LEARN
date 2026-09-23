@@ -1,20 +1,19 @@
 // 用户名编辑功能
 const usernameEl = document.getElementById('username');
-
-// 读取本地存储的昵称
-const savedName = localStorage.getItem('clearn_username');
-if (savedName) {
-    usernameEl.textContent = savedName;
-}
-
-// 点击修改昵称
-usernameEl.addEventListener('click', function() {
-    const newName = prompt('请输入你的昵称：', usernameEl.textContent);
-    if (newName && newName.trim()) {
-        usernameEl.textContent = newName.trim();
-        localStorage.setItem('clearn_username', newName.trim());
+if (usernameEl) {
+    const savedName = localStorage.getItem('clearn_username');
+    if (savedName) {
+        usernameEl.textContent = savedName;
     }
-});
+
+    usernameEl.addEventListener('click', function() {
+        const newName = prompt('请输入你的昵称：', usernameEl.textContent);
+        if (newName && newName.trim()) {
+            usernameEl.textContent = newName.trim();
+            localStorage.setItem('clearn_username', newName.trim());
+        }
+    });
+}
 
 // 学习数据初始化为0
 const studyData = {
