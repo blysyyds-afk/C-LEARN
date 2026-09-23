@@ -276,11 +276,12 @@ body {
     position: fixed;
     bottom: 20px;
     right: 20px;
-    width: 100px;
-    opacity: 0.8;
-    z-index: 10;
+    width: 60px;
+    opacity: 0.5;
+    z-index: 1;
     pointer-events: none;
 }
+
 
 /* 学习步骤列表 */
 .step-list {
