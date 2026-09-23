@@ -67,7 +67,10 @@
 
             <div class="content-card" id="diagnose">
                 <h2><span class="card-header">课前诊断</span></h2>
-                <p style="margin-bottom: 20px; font-size: 14px; color: #4e5969;">用2-3题快速检测当前基础，找到薄弱点。</p>
+                <p style="margin-bottom: 20px; font-size: 14px; color: #4e5969;">
+                    在正式学习前，我们先用2-3道题快速检测你的基础水平，找到你的薄弱点，让后续学习更有针对性。
+                    不用紧张，做错了也没关系，这正是我们学习的意义。
+                </p>
                 
                 <div class="question-block">
                     <div class="question-title">1. C程序的入口函数通常是？</div>
@@ -90,20 +93,83 @@
                 </div>
 
                 <div class="tip-box">
-                    完成后自动进入下一模块，错题同步收录错题本。
+                    💡 完成诊断后，我们会自动进入原理讲解模块。做错的题目会自动收录到错题本，方便后续复盘。
                 </div>
             </div>
 
             <!-- 原理讲解模块 -->
             <div class="content-card" id="theory">
                 <h2><span class="card-header">原理讲解：C语言程序结构</span></h2>
-                <div style="font-size:14px; line-height:1.8; color:#333;">
-                    <p style="margin-bottom:12px;">一个标准的C程序由预处理指令、主函数、变量声明、语句执行四部分组成。</p>
-                    <p style="margin-bottom:12px;"><strong>1. 预处理指令</strong>：如 #include <stdio.h>，用于引入标准库函数，程序编译前执行。</p>
-                    <p style="margin-bottom:12px;"><strong>2. 主函数 main()</strong>：程序的唯一入口，所有代码从这里开始执行。</p>
-                    <p style="margin-bottom:12px;"><strong>3. 语句与分号</strong>：每条执行语句以分号结尾，代表一条指令的结束。</p>
-                    <p><strong>4. 注释</strong>：// 单行注释，/* */ 多行注释，不参与编译，仅用于说明代码。</p>
+                
+                <p style="font-size:15px; margin-bottom:16px; color:#333;">
+                    欢迎来到C语言的世界。在写第一个程序之前，我们先搞懂一个最核心的问题：
+                    <strong>一个C程序到底是由什么组成的？它又是怎么运行起来的？</strong>
+                </p>
+
+                <h3 style="font-size:16px; margin:20px 0 12px; color:#165dff;">一、先看一个最简单的C程序</h3>
+                <div class="code-block">
+<span class="comment">// 引入标准输入输出头文件</span><br>
+<span class="keyword">#include</span> &lt;stdio.h&gt;<br><br>
+<span class="comment">// 主函数，程序唯一入口</span><br>
+<span class="keyword">int</span> main()<br>
+{<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// 在屏幕上输出一行文字</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;printf(<span class="comment">"Hello, World!"</span>);<br><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment">// 程序正常结束，返回0</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> 0;<br>
+}
                 </div>
+
+                <h3 style="font-size:16px; margin:20px 0 12px; color:#165dff;">二、逐行拆解：每一行都在做什么？</h3>
+                <p style="margin-bottom:10px;"><strong>1. #include &lt;stdio.h&gt; —— 工具箱的钥匙</strong></p>
+                <p style="font-size:14px; color:#4e5969; margin-bottom:16px; padding-left:16px;">
+                    就像你要画画得先打开画笔盒，printf、scanf这些输入输出函数都放在stdio.h这个"工具箱"里。
+                    这行代码的作用就是告诉编译器："把stdio工具箱给我拿来，我要用里面的工具。"
+                </p>
+
+                <p style="margin-bottom:10px;"><strong>2. int main() —— 程序的大门</strong></p>
+                <p style="font-size:14px; color:#4e5969; margin-bottom:16px; padding-left:16px;">
+                    main函数是C程序唯一的入口。无论程序有多长、有多少个函数，电脑永远从main函数的第一行开始执行。
+                    前面的int表示这个函数执行完会返回一个整数，用来告诉操作系统程序运行得是否正常。
+                </p>
+
+                <p style="margin-bottom:10px;"><strong>3. 花括号 { } —— 代码的边界</strong></p>
+                <p style="font-size:14px; color:#4e5969; margin-bottom:16px; padding-left:16px;">
+                    一对花括号括起来的部分叫做"代码块"，表示这是一个整体。main函数的所有执行语句都要写在这对花括号里面。
+                </p>
+
+                <p style="margin-bottom:10px;"><strong>4. printf("Hello, World!"); —— 真正干活的语句</strong></p>
+                <p style="font-size:14px; color:#4e5969; margin-bottom:16px; padding-left:16px;">
+                    这是一条执行语句，作用是在控制台屏幕上输出双引号里的内容。<br>
+                    ⚠️ 注意末尾的分号 —— 它就像一句话的句号，表示这条指令到此结束。漏掉分号程序会报错。
+                </p>
+
+                <p style="margin-bottom:10px;"><strong>5. return 0; —— 程序的收尾</strong></p>
+                <p style="font-size:14px; color:#4e5969; margin-bottom:16px; padding-left:16px;">
+                    表示main函数执行完毕，返回数值0给操作系统。在C语言的约定里，返回0代表程序正常退出，
+                    返回非0代表程序异常结束。
+                </p>
+
+                <h3 style="font-size:16px; margin:20px 0 12px; color:#165dff;">三、入门必守的三条铁律</h3>
+                <div style="background:#f7f9ff; padding:16px 20px; border-radius:8px; margin-bottom:16px;">
+                    <p style="margin-bottom:8px;">✅ <strong>铁律一：</strong>C语言区分大小写，Main和main是完全不同的两个东西</p>
+                    <p style="margin-bottom:8px;">✅ <strong>铁律二：</strong>每条执行语句必须以分号结尾</p>
+                    <p>✅ <strong>铁律三：</strong>所有符号都必须是英文半角符号</p>
+                </div>
+
+                <h3 style="font-size:16px; margin:20px 0 12px; color:#ff7d00;">四、新手最容易踩的坑</h3>
+                <div class="tip-box">
+                    ❌ 常见错误1：把分号写成中文分号；<br>
+                    ❌ 常见错误2：漏掉句尾的分号<br>
+                    ❌ 常见错误3：把main写成Main或者MAIN<br>
+                    ❌ 常见错误4：花括号不配对，有头没尾
+                </div>
+
+                <h3 style="font-size:16px; margin:20px 0 12px; color:#00b42a;">五、思考一下</h3>
+                <p style="font-size:14px; color:#333;">
+                    既然程序从main开始执行，那如果我写了两个main函数会发生什么？printf为什么要放在stdio.h里？
+                    带着这些问题，我们进入下一个模块的学习。
+                </p>
             </div>
 
             <!-- 关键拆解模块 -->
@@ -112,11 +178,31 @@
                 <div class="lesson-list">
                     <div class="lesson-card">
                         <div class="lesson-title">main 函数的返回值</div>
-                        <div class="lesson-desc">return 0 代表程序正常退出，非0代表异常</div>
+                        <div class="lesson-desc">
+                            return 0 代表程序正常退出，非0代表异常。操作系统会接收这个返回值，
+                            用来判断程序是否运行成功。这是一种程序和系统的对话方式。
+                        </div>
                     </div>
                     <div class="lesson-card">
                         <div class="lesson-title">printf 格式符</div>
-                        <div class="lesson-desc">%d整型、%f浮点型、%c字符、%s字符串</div>
+                        <div class="lesson-desc">
+                            %d输出整型、%f输出浮点型、%c输出字符、%s输出字符串。
+                            格式符和后面的变量要一一对应，类型不匹配会输出乱码。
+                        </div>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="lesson-title">头文件的本质</div>
+                        <div class="lesson-desc">
+                            头文件里只有函数声明，没有具体实现。真正的实现放在库文件里，
+                            链接阶段会把库文件的代码整合到你的程序中。
+                        </div>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="lesson-title">注释的正确用法</div>
+                        <div class="lesson-desc">
+                            注释不参与编译，是写给人看的。好的代码注释说明"为什么这么做"，
+                            而不是复述"代码在做什么"。
+                        </div>
                     </div>
                 </div>
             </div>
