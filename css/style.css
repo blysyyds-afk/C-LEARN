@@ -6,9 +6,10 @@
 }
 
 body {
-    background: #f7f8fa;
+    background: linear-gradient(135deg, #f0f4ff 0%, #f7f8fc 50%, #f0f4f8 100%);
     color: #1d2129;
-    line-height: 1.6;
+    line-height: 1.7;
+    min-height: 100vh;
 }
 
 /* 全局图片限制 */
@@ -20,8 +21,9 @@ img {
 
 /* 导航栏 */
 .navbar {
-    background: #ffffff;
-    border-bottom: 1px solid #e5e6eb;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(22, 93, 255, 0.08);
     padding: 0 6%;
     height: 64px;
     display: flex;
@@ -84,10 +86,10 @@ img {
 /* 侧边栏用户卡片 */
 .user-card {
     background: #ffffff;
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 24px 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    border: 1px solid #e5e6eb;
+    box-shadow: 0 4px 20px rgba(22, 93, 255, 0.06);
+    border: 1px solid rgba(22, 93, 255, 0.08);
     text-align: center;
     position: sticky;
     top: 88px;
@@ -100,8 +102,8 @@ img {
     left: 0;
     right: 0;
     height: 72px;
-    background: linear-gradient(135deg, #e8f3ff, #d4e7ff);
-    border-radius: 12px 12px 0 0;
+    background: linear-gradient(135deg, #e8f3ff 0%, #d4e7ff 100%);
+    border-radius: 16px 16px 0 0;
 }
 
 .avatar {
@@ -114,7 +116,7 @@ img {
     position: relative;
     z-index: 1;
     object-fit: cover;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
 .username {
@@ -164,10 +166,10 @@ img {
 
 .sidebar-section {
     background: #ffffff;
-    border-radius: 12px;
+    border-radius: 16px;
     padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    border: 1px solid #e5e6eb;
+    box-shadow: 0 4px 20px rgba(22, 93, 255, 0.04);
+    border: 1px solid rgba(22, 93, 255, 0.06);
     margin-top: 16px;
 }
 
@@ -202,7 +204,7 @@ img {
     align-items: center;
     padding: 8px 10px;
     background: #f7f8fa;
-    border-radius: 6px;
+    border-radius: 8px;
 }
 
 .forget-list .level {
@@ -211,6 +213,7 @@ img {
     border-radius: 4px;
     background: #ffece8;
     color: #f53f3f;
+    font-weight: 500;
 }
 
 .forget-list .level.medium {
@@ -221,15 +224,20 @@ img {
 /* 主内容卡片 */
 .content-card {
     background: #ffffff;
-    border-radius: 12px;
-    padding: 24px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-    border: 1px solid #e5e6eb;
+    border-radius: 16px;
+    padding: 28px;
+    box-shadow: 0 4px 20px rgba(22, 93, 255, 0.04);
+    border: 1px solid rgba(22, 93, 255, 0.06);
     margin-bottom: 20px;
+    transition: box-shadow 0.3s;
+}
+
+.content-card:hover {
+    box-shadow: 0 6px 24px rgba(22, 93, 255, 0.08);
 }
 
 .content-card h2 {
-    font-size: 17px;
+    font-size: 18px;
     font-weight: 600;
     margin-bottom: 20px;
     display: flex;
@@ -240,8 +248,8 @@ img {
 .content-card h2::before {
     content: "";
     width: 4px;
-    height: 16px;
-    background: #165dff;
+    height: 18px;
+    background: linear-gradient(180deg, #165dff, #4080ff);
     border-radius: 2px;
     margin-right: 8px;
 }
@@ -327,9 +335,9 @@ img {
 
 .lesson-card {
     border: 1px solid #e5e6eb;
-    border-radius: 10px;
-    padding: 18px;
-    transition: all 0.2s;
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.25s;
     cursor: pointer;
     background: #fff;
 }
@@ -337,7 +345,7 @@ img {
 .lesson-card:hover {
     border-color: #165dff;
     transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(22, 93, 255, 0.1);
+    box-shadow: 0 8px 20px rgba(22, 93, 255, 0.12);
 }
 
 .lesson-title {
@@ -392,9 +400,10 @@ img {
 /* 题目样式 */
 .question-block {
     margin-bottom: 24px;
-    padding: 18px;
-    background: #f7f8fa;
-    border-radius: 10px;
+    padding: 20px;
+    background: linear-gradient(135deg, #f7f9ff 0%, #fafbff 100%);
+    border-radius: 12px;
+    border: 1px solid rgba(22, 93, 255, 0.06);
 }
 
 .question-title {
@@ -426,13 +435,14 @@ img {
 }
 
 .tip-box {
-    background: #fff7e8;
+    background: linear-gradient(90deg, #fff7e8, #fffaf0);
     border-left: 4px solid #ff7d00;
-    padding: 12px 16px;
+    padding: 14px 18px;
     border-radius: 0 8px 8px 0;
     font-size: 13px;
     color: #8a5a00;
     margin-top: 10px;
+    line-height: 1.6;
 }
 
 /* 任务列表 */
@@ -486,6 +496,12 @@ img {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.2s;
+}
+
+.error-item:hover {
+    border-color: #f53f3f;
+    background: #fffafa;
 }
 
 .error-info h4 {
@@ -501,17 +517,19 @@ img {
 
 .retry-btn {
     padding: 6px 14px;
-    background: #165dff;
+    background: linear-gradient(135deg, #165dff, #4080ff);
     color: #fff;
     border: none;
     border-radius: 6px;
     font-size: 13px;
     cursor: pointer;
-    transition: background 0.2s;
+    transition: all 0.2s;
+    font-weight: 500;
 }
 
 .retry-btn:hover {
-    background: #0e42d2;
+    box-shadow: 0 4px 12px rgba(22, 93, 255, 0.3);
+    transform: translateY(-1px);
 }
 
 /* 空状态 */
@@ -537,9 +555,30 @@ img {
     max-width: 40px !important;
     border-radius: 50%;
     object-fit: cover;
-    opacity: 0.3;
+    opacity: 0.25;
     z-index: 1;
     pointer-events: none;
+}
+
+/* 代码块样式 */
+.code-block {
+    background: #1d2129;
+    color: #e5e6eb;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-family: "Consolas", "Monaco", monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    margin: 12px 0;
+    overflow-x: auto;
+}
+
+.code-block .comment {
+    color: #00b42a;
+}
+
+.code-block .keyword {
+    color: #4080ff;
 }
 
 /* 响应式 */
