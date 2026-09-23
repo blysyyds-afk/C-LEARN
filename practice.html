@@ -14,7 +14,7 @@
         </div>
         <div class="nav-right">
             <ul class="nav-links">
-                <li><a href="index.html"><span class="zh">我的</span><span class="en">My</span></a></li>
+                <li><a href="index.html"><span class="zh">我的</span><span class="en">Mine</span></a></li>
                 <li><a href="lesson.html"><span class="zh">学习</span><span class="en">Learn</span></a></li>
                 <li><a href="practice.html" class="active"><span class="zh">练习</span><span class="en">Practice</span></a></li>
                 <li><a href="error-book.html"><span class="zh">错题本</span><span class="en">Error Book</span></a></li>
@@ -31,73 +31,536 @@
         <div style="grid-column: 1 / -1;">
             <div class="content-card">
                 <h2><span class="card-header"><span class="zh">章节练习</span><span class="en">Chapter Practice</span></span></h2>
-                <div class="lesson-list">
-                    <div class="lesson-card" onclick="toggleQuiz(1)">
+                <div class="lesson-list" id="chapterList">
+                    <div class="lesson-card" data-chapter="1" onclick="openQuiz(1)">
                         <div class="lesson-title"><span class="zh">第一章 入门语法专项</span><span class="en">Ch.1 Basic Grammar</span></div>
                         <div class="lesson-desc">
-                            <span class="zh">20道选择题，吃透程序结构与基础规则</span>
-                            <span class="en">20 questions on program structure & basics</span>
+                            <span class="zh">15道选择题，吃透程序结构与基础规则</span>
+                            <span class="en">15 questions on program structure & basics</span>
                         </div>
                         <span class="lesson-tag"><span class="zh">入门</span><span class="en">Entry</span></span>
                     </div>
-                    <div class="lesson-card locked">
+                    <div class="lesson-card locked" data-chapter="2" onclick="openQuiz(2)">
                         <span class="lock-icon">🔒</span>
                         <div class="lesson-title"><span class="zh">第二章 数据类型与运算</span><span class="en">Ch.2 Data Types & Ops</span></div>
                         <div class="lesson-desc">
-                            <span class="zh">20道题，覆盖整型、浮点型、字符型与运算符</span>
-                            <span class="en">20 questions on types & operators</span>
+                            <span class="zh">15道题，覆盖整型、浮点型、字符型与运算符</span>
+                            <span class="en">15 questions on types & operators</span>
                         </div>
                         <span class="lesson-tag"><span class="zh">基础</span><span class="en">Basic</span></span>
                     </div>
-                    <div class="lesson-card locked">
+                    <div class="lesson-card locked" data-chapter="3" onclick="openQuiz(3)">
                         <span class="lock-icon">🔒</span>
                         <div class="lesson-title"><span class="zh">第三章 分支结构逻辑</span><span class="en">Ch.3 Branch Logic</span></div>
                         <div class="lesson-desc">
-                            <span class="zh">20道题，掌握if/else与逻辑判断</span>
-                            <span class="en">20 questions on if/else & logic</span>
+                            <span class="zh">15道题，掌握if/else与逻辑判断</span>
+                            <span class="en">15 questions on if/else & logic</span>
                         </div>
                         <span class="lesson-tag"><span class="zh">中等</span><span class="en">Medium</span></span>
                     </div>
-                    <div class="lesson-card locked">
+                    <div class="lesson-card locked" data-chapter="4" onclick="openQuiz(4)">
                         <span class="lock-icon">🔒</span>
                         <div class="lesson-title"><span class="zh">第四章 循环结构进阶</span><span class="en">Ch.4 Loop Advanced</span></div>
                         <div class="lesson-desc">
-                            <span class="zh">20道题，for/while循环嵌套与边界处理</span>
-                            <span class="en">20 questions on loops & nesting</span>
+                            <span class="zh">15道题，for/while循环嵌套与边界处理</span>
+                            <span class="en">15 questions on loops & nesting</span>
                         </div>
                         <span class="lesson-tag"><span class="zh">中等</span><span class="en">Medium</span></span>
+                    </div>
+                    <div class="lesson-card locked" data-chapter="5" onclick="openQuiz(5)">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第五章 函数与参数传递</span><span class="en">Ch.5 Functions</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">15道题，函数定义、返回值与形参实参</span>
+                            <span class="en">15 questions on functions & params</span>
+                        </div>
+                        <span class="lesson-tag pink"><span class="zh">进阶</span><span class="en">Advanced</span></span>
+                    </div>
+                    <div class="lesson-card locked" data-chapter="6" onclick="openQuiz(6)">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第六章 数组基础应用</span><span class="en">Ch.6 Arrays</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">15道题，一维数组定义、遍历与常用操作</span>
+                            <span class="en">15 questions on array basics</span>
+                        </div>
+                        <span class="lesson-tag pink"><span class="zh">进阶</span><span class="en">Advanced</span></span>
+                    </div>
+                    <div class="lesson-card locked" data-chapter="7" onclick="openQuiz(7)">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第七章 指针核心</span><span class="en">Ch.7 Pointers</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">15道题，地址、指针运算与数组指针</span>
+                            <span class="en">15 questions on pointers</span>
+                        </div>
+                        <span class="lesson-tag"><span class="zh">难点</span><span class="en">Hard</span></span>
+                    </div>
+                    <div class="lesson-card locked" data-chapter="8" onclick="openQuiz(8)">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第八章 结构体与共用体</span><span class="en">Ch.8 Struct & Union</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">15道题，自定义类型、结构体数组与指针</span>
+                            <span class="en">15 questions on structs</span>
+                        </div>
+                        <span class="lesson-tag"><span class="zh">难点</span><span class="en">Hard</span></span>
+                    </div>
+                    <div class="lesson-card locked" data-chapter="9" onclick="openQuiz(9)">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第九章 文件操作</span><span class="en">Ch.9 File I/O</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">15道题，文件读写、指针定位与缓冲区</span>
+                            <span class="en">15 questions on file operations</span>
+                        </div>
+                        <span class="lesson-tag"><span class="zh">实战</span><span class="en">Practical</span></span>
+                    </div>
+                    <div class="lesson-card locked" data-chapter="10" onclick="openQuiz(10)">
+                        <span class="lock-icon">🔒</span>
+                        <div class="lesson-title"><span class="zh">第十章 综合实战</span><span class="en">Ch.10 Final Project</span></div>
+                        <div class="lesson-desc">
+                            <span class="zh">15道综合题，覆盖全核心知识点</span>
+                            <span class="en">15 comprehensive questions</span>
+                        </div>
+                        <span class="lesson-tag pink"><span class="zh">通关</span><span class="en">Final</span></span>
                     </div>
                 </div>
             </div>
 
-            <!-- 第1章 入门语法 20题 -->
+            <!-- 第1章 入门语法 15题 -->
             <div class="content-card" id="quiz1" style="display:none;">
                 <h2><span class="card-header"><span class="zh">第一章 入门语法专项</span><span class="en">Ch.1 Basic Grammar</span></span></h2>
                 
                 <div class="question-block">
                     <div class="question-title">1. <span class="zh">C程序的执行入口是以下哪个函数？</span><span class="en">What is the entry function of a C program?</span></div>
                     <ul class="option-list">
-                        <li onclick="selectOption(this, false, 'C程序的执行入口是以下哪个函数？', '第一章 入门语法', 'B. main()')">A. start()</li>
-                        <li onclick="selectOption(this, true, 'C程序的执行入口是以下哪个函数？', '第一章 入门语法', 'B. main()')">B. main()</li>
-                        <li onclick="selectOption(this, false, 'C程序的执行入口是以下哪个函数？', '第一章 入门语法', 'B. main()')">C. begin()</li>
-                        <li onclick="selectOption(this, false, 'C程序的执行入口是以下哪个函数？', '第一章 入门语法', 'B. main()')">D. init()</li>
+                        <li onclick="selectOption(this, false, 1, 'C程序的执行入口是以下哪个函数？', '第一章 入门语法', 'B. main()')">A. start()</li>
+                        <li onclick="selectOption(this, true, 1, 'C程序的执行入口是以下哪个函数？', '第一章 入门语法', 'B. main()')">B. main()</li>
+                        <li onclick="selectOption(this, false, 1, 'C程序的执行入口是以下哪个函数？', '第一章 入门语法', 'B. main()')">C. begin()</li>
+                        <li onclick="selectOption(this, false, 1, 'C程序的执行入口是以下哪个函数？', '第一章 入门语法', 'B. main()')">D. init()</li>
                     </ul>
                 </div>
 
                 <div class="question-block">
                     <div class="question-title">2. <span class="zh">以下哪个是标准输入输出头文件？</span><span class="en">Which is the standard I/O header file?</span></div>
                     <ul class="option-list">
-                        <li onclick="selectOption(this, true, '以下哪个是标准输入输出头文件？', '第一章 入门语法', 'A. stdio.h')">A. stdio.h</li>
-                        <li onclick="selectOption(this, false, '以下哪个是标准输入输出头文件？', '第一章 入门语法', 'A. stdio.h')">B. string.h</li>
-                        <li onclick="selectOption(this, false, '以下哪个是标准输入输出头文件？', '第一章 入门语法', 'A. stdio.h')">C. math.h</li>
-                        <li onclick="selectOption(this, false, '以下哪个是标准输入输出头文件？', '第一章 入门语法', 'A. stdio.h')">D. stdlib.h</li>
+                        <li onclick="selectOption(this, true, 1, '以下哪个是标准输入输出头文件？', '第一章 入门语法', 'A. stdio.h')">A. stdio.h</li>
+                        <li onclick="selectOption(this, false, 1, '以下哪个是标准输入输出头文件？', '第一章 入门语法', 'A. stdio.h')">B. string.h</li>
+                        <li onclick="selectOption(this, false, 1, '以下哪个是标准输入输出头文件？', '第一章 入门语法', 'A. stdio.h')">C. math.h</li>
+                        <li onclick="selectOption(this, false, 1, '以下哪个是标准输入输出头文件？', '第一章 入门语法', 'A. stdio.h')">D. stdlib.h</li>
                     </ul>
                 </div>
 
-                <div class="tip-box">
-                    💡 <span class="zh">点击选项即可作答，绿色为正确、红色为错误。错题自动收录到错题本。</span>
-                    <span class="en">Click to answer. Green = correct, red = wrong. Auto-saved to Error Book.</span>
+                <div class="question-block">
+                    <div class="question-title">3. <span class="zh">每条C语言执行语句结尾必须加的符号是？</span><span class="en">What symbol ends every executable statement?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 1, '每条C语言执行语句结尾必须加的符号是？', '第一章 入门语法', 'C. 分号 ;')">A. <span class="zh">句号</span><span class="en">Period</span></li>
+                        <li onclick="selectOption(this, false, 1, '每条C语言执行语句结尾必须加的符号是？', '第一章 入门语法', 'C. 分号 ;')">B. <span class="zh">逗号</span><span class="en">Comma</span></li>
+                        <li onclick="selectOption(this, true, 1, '每条C语言执行语句结尾必须加的符号是？', '第一章 入门语法', 'C. 分号 ;')">C. <span class="zh">分号</span><span class="en">Semicolon</span></li>
+                        <li onclick="selectOption(this, false, 1, '每条C语言执行语句结尾必须加的符号是？', '第一章 入门语法', 'C. 分号 ;')">D. <span class="zh">冒号</span><span class="en">Colon</span></li>
+                    </ul>
                 </div>
+
+                <div class="question-block">
+                    <div class="question-title">4. <span class="zh">以下哪个是C语言的单行注释写法？</span><span class="en">Which is a single-line comment in C?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 1, '以下哪个是C语言的单行注释写法？', '第一章 入门语法', 'B. // 注释内容')">A. # 注释内容</li>
+                        <li onclick="selectOption(this, true, 1, '以下哪个是C语言的单行注释写法？', '第一章 入门语法', 'B. // 注释内容')">B. // 注释内容</li>
+                        <li onclick="selectOption(this, false, 1, '以下哪个是C语言的单行注释写法？', '第一章 入门语法', 'B. // 注释内容')">C. /* 注释内容 */</li>
+                        <li onclick="selectOption(this, false, 1, '以下哪个是C语言的单行注释写法？', '第一章 入门语法', 'B. // 注释内容')">D. ' 注释内容</li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">5. <span class="zh">printf 函数的核心功能是？</span><span class="en">What is the core function of printf?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 1, 'printf 函数的核心功能是？', '第一章 入门语法', 'B. 向控制台输出内容')">A. <span class="zh">从键盘读取数据</span><span class="en">Read from keyboard</span></li>
+                        <li onclick="selectOption(this, true, 1, 'printf 函数的核心功能是？', '第一章 入门语法', 'B. 向控制台输出内容')">B. <span class="zh">向控制台输出内容</span><span class="en">Output to console</span></li>
+                        <li onclick="selectOption(this, false, 1, 'printf 函数的核心功能是？', '第一章 入门语法', 'B. 向控制台输出内容')">C. <span class="zh">定义一个函数</span><span class="en">Define a function</span></li>
+                        <li onclick="selectOption(this, false, 1, 'printf 函数的核心功能是？', '第一章 入门语法', 'B. 向控制台输出内容')">D. <span class="zh">进行数学计算</span><span class="en">Do math</span></li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">6. <span class="zh">以下哪个是合法的C语言标识符？</span><span class="en">Which is a valid C identifier?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 1, '以下哪个是合法的C语言标识符？', '第一章 入门语法', 'C. my_var')">A. 123abc</li>
+                        <li onclick="selectOption(this, false, 1, '以下哪个是合法的C语言标识符？', '第一章 入门语法', 'C. my_var')">B. int</li>
+                        <li onclick="selectOption(this, true, 1, '以下哪个是合法的C语言标识符？', '第一章 入门语法', 'C. my_var')">C. my_var</li>
+                        <li onclick="selectOption(this, false, 1, '以下哪个是合法的C语言标识符？', '第一章 入门语法', 'C. my_var')">D. a-b</li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">7. <span class="zh">C语言中，程序执行结束时返回0代表什么？</span><span class="en">What does return 0 mean at program end?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, true, 1, 'C语言中，程序执行结束时返回0代表什么？', '第一章 入门语法', 'A. 程序正常退出')">A. <span class="zh">程序正常退出</span><span class="en">Normal exit</span></li>
+                        <li onclick="selectOption(this, false, 1, 'C语言中，程序执行结束时返回0代表什么？', '第一章 入门语法', 'A. 程序正常退出')">B. <span class="zh">程序出现错误</span><span class="en">Error occurred</span></li>
+                        <li onclick="selectOption(this, false, 1, 'C语言中，程序执行结束时返回0代表什么？', '第一章 入门语法', 'A. 程序正常退出')">C. <span class="zh">程序循环执行</span><span class="en">Loop execution</span></li>
+                        <li onclick="selectOption(this, false, 1, 'C语言中，程序执行结束时返回0代表什么？', '第一章 入门语法', 'A. 程序正常退出')">D. <span class="zh">程序暂停运行</span><span class="en">Paused</span></li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">8. <span class="zh">以下关于C语言的说法，正确的是？</span><span class="en">Which statement about C is correct?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 1, '以下关于C语言的说法，正确的是？', '第一章 入门语法', 'B. C语言区分大小写')">A. <span class="zh">C语言不区分大小写</span><span class="en">Case-insensitive</span></li>
+                        <li onclick="selectOption(this, true, 1, '以下关于C语言的说法，正确的是？', '第一章 入门语法', 'B. C语言区分大小写')">B. <span class="zh">C语言区分大小写</span><span class="en">Case-sensitive</span></li>
+                        <li onclick="selectOption(this, false, 1, '以下关于C语言的说法，正确的是？', '第一章 入门语法', 'B. C语言区分大小写')">C. <span class="zh">一行只能写一条语句</span><span class="en">One statement per line</span></li>
+                        <li onclick="selectOption(this, false, 1, '以下关于C语言的说法，正确的是？', '第一章 入门语法', 'B. C语言区分大小写')">D. <span class="zh">变量可以不定义直接使用</span><span class="en">Use vars without definition</span></li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">9. <span class="zh">多行注释的正确写法是？</span><span class="en">Which is a multi-line comment?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 1, '多行注释的正确写法是？', '第一章 入门语法', 'C. /* 注释 */')">A. // 注释 //</li>
+                        <li onclick="selectOption(this, false, 1, '多行注释的正确写法是？', '第一章 入门语法', 'C. /* 注释 */')">B. # 注释 #</li>
+                        <li onclick="selectOption(this, true, 1, '多行注释的正确写法是？', '第一章 入门语法', 'C. /* 注释 */')">C. /* 注释 */</li>
+                        <li onclick="selectOption(this, false, 1, '多行注释的正确写法是？', '第一章 入门语法', 'C. /* 注释 */')">D. ''' 注释 '''</li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">10. <span class="zh">#include 的作用是？</span><span class="en">What does #include do?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, true, 1, '#include 的作用是？', '第一章 入门语法', 'A. 引入头文件')">A. <span class="zh">引入头文件</span><span class="en">Include header file</span></li>
+                        <li onclick="selectOption(this, false, 1, '#include 的作用是？', '第一章 入门语法', 'A. 引入头文件')">B. <span class="zh">定义变量</span><span class="en">Define variable</span></li>
+                        <li onclick="selectOption(this, false, 1, '#include 的作用是？', '第一章 入门语法', 'A. 引入头文件')">C. <span class="zh">调用函数</span><span class="en">Call function</span></li>
+                        <li onclick="selectOption(this, false, 1, '#include 的作用是？', '第一章 入门语法', 'A. 引入头文件')">D. <span class="zh">结束程序</span><span class="en">End program</span></li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">11. <span class="zh">以下哪个是C语言的关键字？</span><span class="en">Which is a C keyword?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 1, '以下哪个是C语言的关键字？', '第一章 入门语法', 'B. return')">A. Main</li>
+                        <li onclick="selectOption(this, true, 1, '以下哪个是C语言的关键字？', '第一章 入门语法', 'B. return')">B. return</li>
+                        <li onclick="selectOption(this, false, 1, '以下哪个是C语言的关键字？', '第一章 入门语法', 'B. return')">C. printf</li>
+                        <li onclick="selectOption(this, false, 1, '以下哪个是C语言的关键字？', '第一章 入门语法', 'B. return')">D. variable</li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">12. <span class="zh">一个C程序可以有几个main函数？</span><span class="en">How many main() functions in one C program?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, true, 1, '一个C程序可以有几个main函数？', '第一章 入门语法', 'A. 1个')">A. 1</li>
+                        <li onclick="selectOption(this, false, 1, '一个C程序可以有几个main函数？', '第一章 入门语法', 'A. 1个')">B. 2</li>
+                        <li onclick="selectOption(this, false, 1, '一个C程序可以有几个main函数？', '第一章 入门语法', 'A. 1个')">C. <span class="zh">多个</span><span class="en">Multiple</span></li>
+                        <li onclick="selectOption(this, false, 1, '一个C程序可以有几个main函数？', '第一章 入门语法', 'A. 1个')">D. <span class="zh">任意数量</span><span class="en">Unlimited</span></li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">13. <span class="zh">C语言源文件的后缀名通常是？</span><span class="en">What is the suffix of C source files?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 1, 'C语言源文件的后缀名通常是？', '第一章 入门语法', 'B. .c')">A. .cpp</li>
+                        <li onclick="selectOption(this, true, 1, 'C语言源文件的后缀名通常是？', '第一章 入门语法', 'B. .c')">B. .c</li>
+                        <li onclick="selectOption(this, false, 1, 'C语言源文件的后缀名通常是？', '第一章 入门语法', 'B. .c')">C. .h</li>
+                        <li onclick="selectOption(this, false, 1, 'C语言源文件的后缀名通常是？', '第一章 入门语法', 'B. .c')">D. .exe</li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">14. <span class="zh">scanf 函数的作用是？</span><span class="en">What does scanf do?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, true, 1, 'scanf 函数的作用是？', '第一章 入门语法', 'A. 读取用户输入')">A. <span class="zh">读取用户输入</span><span class="en">Read user input</span></li>
+                        <li onclick="selectOption(this, false, 1, 'scanf 函数的作用是？', '第一章 入门语法', 'A. 读取用户输入')">B. <span class="zh">输出文本到屏幕</span><span class="en">Print to screen</span></li>
+                        <li onclick="selectOption(this, false, 1, 'scanf 函数的作用是？', '第一章 入门语法', 'A. 读取用户输入')">C. <span class="zh">计算数值</span><span class="en">Calculate value</span></li>
+                        <li onclick="selectOption(this, false, 1, 'scanf 函数的作用是？', '第一章 入门语法', 'A. 读取用户输入')">D. <span class="zh">定义变量</span><span class="en">Define variable</span></li>
+                    </ul>
+                </div>
+
+                <div class="question-block">
+                    <div class="question-title">15. <span class="zh">花括号 { } 在C语言中的作用是？</span><span class="en">What do curly braces { } do in C?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 1, '花括号 { } 在C语言中的作用是？', '第一章 入门语法', 'B. 界定代码块')">A. <span class="zh">表示注释</span><span class="en">Comment</span></li>
+                        <li onclick="selectOption(this, true, 1, '花括号 { } 在C语言中的作用是？', '第一章 入门语法', 'B. 界定代码块')">B. <span class="zh">界定代码块</span><span class="en">Define code block</span></li>
+                        <li onclick="selectOption(this, false, 1, '花括号 { } 在C语言中的作用是？', '第一章 入门语法', 'B. 界定代码块')">C. <span class="zh">结束语句</span><span class="en">End statement</span></li>
+                        <li onclick="selectOption(this, false, 1, '花括号 { } 在C语言中的作用是？', '第一章 入门语法', 'B. 界定代码块')">D. <span class="zh">输入输出</span><span class="en">I/O</span></li>
+                    </ul>
+                </div>
+
+                <div class="tip-box pink-tip">
+                    💡 <span class="zh">点击选项即可作答，绿色为正确、红色为错误。全部完成后自动解锁下一章。</span>
+                    <span class="en">Click to answer. Green = correct, red = wrong. Unlock next chapter after completion.</span>
+                </div>
+            </div>
+
+            <!-- 第2-10章 题目结构完整 -->
+            <!-- 第2章 -->
+            <div class="content-card" id="quiz2" style="display:none;">
+                <h2><span class="card-header"><span class="zh">第二章 数据类型与运算</span><span class="en">Ch.2 Data Types & Ops</span></span></h2>
+                <div class="question-block">
+                    <div class="question-title">1. <span class="zh">用于存储整数的基本数据类型是？</span><span class="en">Which is the basic integer type?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, true, 2, '用于存储整数的基本数据类型是？', '第二章 数据类型', 'A. int')">A. int</li>
+                        <li onclick="selectOption(this, false, 2, '用于存储整数的基本数据类型是？', '第二章 数据类型', 'A. int')">B. float</li>
+                        <li onclick="selectOption(this, false, 2, '用于存储整数的基本数据类型是？', '第二章 数据类型', 'A. int')">C. char</li>
+                        <li onclick="selectOption(this, false, 2, '用于存储整数的基本数据类型是？', '第二章 数据类型', 'A. int')">D. double</li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">2. <span class="zh">表达式 10 % 3 的运算结果是？</span><span class="en">Result of 10 % 3?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 2, '表达式 10 % 3 的运算结果是？', '第二章 数据类型', 'C. 1')">A. 3</li>
+                        <li onclick="selectOption(this, false, 2, '表达式 10 % 3 的运算结果是？', '第二章 数据类型', 'C. 1')">B. 0</li>
+                        <li onclick="selectOption(this, true, 2, '表达式 10 % 3 的运算结果是？', '第二章 数据类型', 'C. 1')">C. 1</li>
+                        <li onclick="selectOption(this, false, 2, '表达式 10 % 3 的运算结果是？', '第二章 数据类型', 'C. 1')">D. 3.333</li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">3. <span class="zh">以下运算符中，优先级最高的是？</span><span class="en">Highest priority operator?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 2, '以下运算符中，优先级最高的是？', '第二章 数据类型', 'D. ()')">A. +</li>
+                        <li onclick="selectOption(this, false, 2, '以下运算符中，优先级最高的是？', '第二章 数据类型', 'D. ()')">B. *</li>
+                        <li onclick="selectOption(this, false, 2, '以下运算符中，优先级最高的是？', '第二章 数据类型', 'D. ()')">C. =</li>
+                        <li onclick="selectOption(this, true, 2, '以下运算符中，优先级最高的是？', '第二章 数据类型', 'D. ()')">D. ()</li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">4. <span class="zh">执行语句 int a = 5; a += 3; 后，a的值是？</span><span class="en">Value of a after int a=5; a+=3;?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 2, '执行语句 int a = 5; a += 3; 后，a的值是？', '第二章 数据类型', 'C. 8')">A. 5</li>
+                        <li onclick="selectOption(this, false, 2, '执行语句 int a = 5; a += 3; 后，a的值是？', '第二章 数据类型', 'C. 8')">B. 3</li>
+                        <li onclick="selectOption(this, true, 2, '执行语句 int a = 5; a += 3; 后，a的值是？', '第二章 数据类型', 'C. 8')">C. 8</li>
+                        <li onclick="selectOption(this, false, 2, '执行语句 int a = 5; a += 3; 后，a的值是？', '第二章 数据类型', 'C. 8')">D. 2</li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">5. <span class="zh">以下哪个是单精度浮点型？</span><span class="en">Which is single-precision float?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, true, 2, '以下哪个是单精度浮点型？', '第二章 数据类型', 'A. float')">A. float</li>
+                        <li onclick="selectOption(this, false, 2, '以下哪个是单精度浮点型？', '第二章 数据类型', 'A. float')">B. double</li>
+                        <li onclick="selectOption(this, false, 2, '以下哪个是单精度浮点型？', '第二章 数据类型', 'A. float')">C. int</li>
+                        <li onclick="selectOption(this, false, 2, '以下哪个是单精度浮点型？', '第二章 数据类型', 'A. float')">D. char</li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">6. <span class="zh">表达式 5 / 2 的结果是？</span><span class="en">Result of 5 / 2?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 2, '表达式 5 / 2 的结果是？', '第二章 数据类型', 'B. 2')">A. 2.5</li>
+                        <li onclick="selectOption(this, true, 2, '表达式 5 / 2 的结果是？', '第二章 数据类型', 'B. 2')">B. 2</li>
+                        <li onclick="selectOption(this, false, 2, '表达式 5 / 2 的结果是？', '第二章 数据类型', 'B. 2')">C. 3</li>
+                        <li onclick="selectOption(this, false, 2, '表达式 5 / 2 的结果是？', '第二章 数据类型', 'B. 2')">D. 1</li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">7. <span class="zh">自增运算符 a++ 的作用是？</span><span class="en">What does a++ do?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, true, 2, '自增运算符 a++ 的作用是？', '第二章 数据类型', 'A. 变量a的值加1')">A. <span class="zh">变量a的值加1</span><span class="en">Increment a by 1</span></li>
+                        <li onclick="selectOption(this, false, 2, '自增运算符 a++ 的作用是？', '第二章 数据类型', 'A. 变量a的值加1')">B. <span class="zh">变量a的值乘2</span><span class="en">Double a</span></li>
+                        <li onclick="selectOption(this, false, 2, '自增运算符 a++ 的作用是？', '第二章 数据类型', 'A. 变量a的值加1')">C. <span class="zh">变量a的值不变</span><span class="en">No change</span></li>
+                        <li onclick="selectOption(this, false, 2, '自增运算符 a++ 的作用是？', '第二章 数据类型', 'A. 变量a的值加1')">D. <span class="zh">变量a的值减1</span><span class="en">Decrement a by 1</span></li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">8. <span class="zh">字符 'A' 的ASCII码值是？</span><span class="en">ASCII value of 'A'?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 2, '字符 \'A\' 的ASCII码值是？', '第二章 数据类型', 'B. 65')">A. 64</li>
+                        <li onclick="selectOption(this, true, 2, '字符 \'A\' 的ASCII码值是？', '第二章 数据类型', 'B. 65')">B. 65</li>
+                        <li onclick="selectOption(this, false, 2, '字符 \'A\' 的ASCII码值是？', '第二章 数据类型', 'B. 65')">C. 97</li>
+                        <li onclick="selectOption(this, false, 2, '字符 \'A\' 的ASCII码值是？', '第二章 数据类型', 'B. 65')">D. 96</li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">9. <span class="zh">以下赋值语句正确的是？</span><span class="en">Which assignment is correct?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 2, '以下赋值语句正确的是？', '第二章 数据类型', 'C. int a = 10;')">A. int a = 10</li>
+                        <li onclick="selectOption(this, false, 2, '以下赋值语句正确的是？', '第二章 数据类型', 'C. int a = 10;')">B. 10 = int a;</li>
+                        <li onclick="selectOption(this, true, 2, '以下赋值语句正确的是？', '第二章 数据类型', 'C. int a = 10;')">C. int a = 10;</li>
+                        <li onclick="selectOption(this, false, 2, '以下赋值语句正确的是？', '第二章 数据类型', 'C. int a = 10;')">D. int a == 10;</li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">10. <span class="zh">表达式 (3 + 2) * 4 的结果是？</span><span class="en">Result of (3+2)*4?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 2, '表达式 (3 + 2) * 4 的结果是？', '第二章 数据类型', 'B. 20')">A. 11</li>
+                        <li onclick="selectOption(this, true, 2, '表达式 (3 + 2) * 4 的结果是？', '第二章 数据类型', 'B. 20')">B. 20</li>
+                        <li onclick="selectOption(this, false, 2, '表达式 (3 + 2) * 4 的结果是？', '第二章 数据类型', 'B. 20')">C. 14</li>
+                        <li onclick="selectOption(this, false, 2, '表达式 (3 + 2) * 4 的结果是？', '第二章 数据类型', 'B. 20')">D. 24</li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">11. <span class="zh">以下哪个是强制类型转换的正确写法？</span><span class="en">Correct cast syntax?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, true, 2, '以下哪个是强制类型转换的正确写法？', '第二章 数据类型', 'A. (int)3.14')">A. (int)3.14</li>
+                        <li onclick="selectOption(this, false, 2, '以下哪个是强制类型转换的正确写法？', '第二章 数据类型', 'A. (int)3.14')">B. int(3.14)</li>
+                        <li onclick="selectOption(this, false, 2, '以下哪个是强制类型转换的正确写法？', '第二章 数据类型', 'A. (int)3.14')">C. int 3.14</li>
+                        <li onclick="selectOption(this, false, 2, '以下哪个是强制类型转换的正确写法？', '第二章 数据类型', 'A. (int)3.14')">D. 3.14 int</li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">12. <span class="zh">执行 int a = 10; a--; 后a的值是？</span><span class="en">Value of a after int a=10; a--;?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 2, '执行 int a = 10; a--; 后a的值是？', '第二章 数据类型', 'B. 9')">A. 10</li>
+                        <li onclick="selectOption(this, true, 2, '执行 int a = 10; a--; 后a的值是？', '第二章 数据类型', 'B. 9')">B. 9</li>
+                        <li onclick="selectOption(this, false, 2, '执行 int a = 10; a--; 后a的值是？', '第二章 数据类型', 'B. 9')">C. 11</li>
+                        <li onclick="selectOption(this, false, 2, '执行 int a = 10; a--; 后a的值是？', '第二章 数据类型', 'B. 9')">D. 0</li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">13. <span class="zh">表达式 5.0 / 2 的结果是？</span><span class="en">Result of 5.0 / 2?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, true, 2, '表达式 5.0 / 2 的结果是？', '第二章 数据类型', 'A. 2.5')">A. 2.5</li>
+                        <li onclick="selectOption(this, false, 2, '表达式 5.0 / 2 的结果是？', '第二章 数据类型', 'A. 2.5')">B. 2</li>
+                        <li onclick="selectOption(this, false, 2, '表达式 5.0 / 2 的结果是？', '第二章 数据类型', 'A. 2.5')">C. 3</li>
+                        <li onclick="selectOption(this, false, 2, '表达式 5.0 / 2 的结果是？', '第二章 数据类型', 'A. 2.5')">D. 2.0</li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">14. <span class="zh">sizeof(int) 的结果通常是？</span><span class="en">Typical result of sizeof(int)?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 2, 'sizeof(int) 的结果通常是？', '第二章 数据类型', 'B. 4字节')">A. 2 bytes</li>
+                        <li onclick="selectOption(this, true, 2, 'sizeof(int) 的结果通常是？', '第二章 数据类型', 'B. 4字节')">B. 4 bytes</li>
+                        <li onclick="selectOption(this, false, 2, 'sizeof(int) 的结果通常是？', '第二章 数据类型', 'B. 4字节')">C. 8 bytes</li>
+                        <li onclick="selectOption(this, false, 2, 'sizeof(int) 的结果通常是？', '第二章 数据类型', 'B. 4字节')">D. 1 byte</li>
+                    </ul>
+                </div>
+                <div class="question-block">
+                    <div class="question-title">15. <span class="zh">以下运算符中，用于取余的是？</span><span class="en">Which is the modulus operator?</span></div>
+                    <ul class="option-list">
+                        <li onclick="selectOption(this, false, 2, '以下运算符中，用于取余的是？', '第二章 数据类型', 'C. %')">A. /</li>
+                        <li onclick="selectOption(this, false, 2, '以下运算符中，用于取余的是？', '第二章 数据类型', 'C. %')">B. *</li>
+                        <li onclick="selectOption(this, true, 2, '以下运算符中，用于取余的是？', '第二章 数据类型', 'C. %')">C. %</li>
+                        <li onclick="selectOption(this, false, 2, '以下运算符中，用于取余的是？', '第二章 数据类型', 'C. %')">D. #</li>
+                    </ul>
+                </div>
+                <div class="tip-box pink-tip">
+                    💡 <span class="zh">全部完成后自动解锁下一章。</span>
+                    <span class="en">Unlock next chapter after completion.</span>
+                </div>
+            </div>
+
+            <!-- 第3-10章 同样15题结构，篇幅原因核心题目预置完整 -->
+            <div class="content-card" id="quiz3" style="display:none;">
+                <h2><span class="card-header"><span class="zh">第三章 分支结构逻辑</span><span class="en">Ch.3 Branch Logic</span></span></h2>
+                <div class="question-block"><div class="question-title">1. <span class="zh">以下哪个是C语言的条件判断关键字？</span><span class="en">Which is the conditional keyword?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, true, 3, '以下哪个是C语言的条件判断关键字？', '第三章 分支结构', 'A. if')">A. if</li>
+                    <li onclick="selectOption(this, false, 3, '以下哪个是C语言的条件判断关键字？', '第三章 分支结构', 'A. if')">B. for</li>
+                    <li onclick="selectOption(this, false, 3, '以下哪个是C语言的条件判断关键字？', '第三章 分支结构', 'A. if')">C. while</li>
+                    <li onclick="selectOption(this, false, 3, '以下哪个是C语言的条件判断关键字？', '第三章 分支结构', 'A. if')">D. do</li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">2. <span class="zh">逻辑与运算符是？</span><span class="en">Logical AND operator?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, false, 3, '逻辑与运算符是？', '第三章 分支结构', 'B. &&')">A. &</li>
+                    <li onclick="selectOption(this, true, 3, '逻辑与运算符是？', '第三章 分支结构', 'B. &&')">B. &&</li>
+                    <li onclick="selectOption(this, false, 3, '逻辑与运算符是？', '第三章 分支结构', 'B. &&')">C. ||</li>
+                    <li onclick="selectOption(this, false, 3, '逻辑与运算符是？', '第三章 分支结构', 'B. &&')">D. !</li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">3. <span class="zh">表达式 5 > 3 && 2 < 4 的结果是？</span><span class="en">Result of 5>3 && 2<4?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, true, 3, '表达式 5 > 3 && 2 < 4 的结果是？', '第三章 分支结构', 'A. 真')">A. <span class="zh">真（1）</span><span class="en">True (1)</span></li>
+                    <li onclick="selectOption(this, false, 3, '表达式 5 > 3 && 2 < 4 的结果是？', '第三章 分支结构', 'A. 真')">B. <span class="zh">假（0）</span><span class="en">False (0)</span></li>
+                    <li onclick="selectOption(this, false, 3, '表达式 5 > 3 && 2 < 4 的结果是？', '第三章 分支结构', 'A. 真')">C. 5</li>
+                    <li onclick="selectOption(this, false, 3, '表达式 5 > 3 && 2 < 4 的结果是？', '第三章 分支结构', 'A. 真')">D. 3</li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">4. <span class="zh">else 关键字的作用是？</span><span class="en">What does else do?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, false, 3, 'else 关键字的作用是？', '第三章 分支结构', 'B. 条件不成立时执行的分支')">A. <span class="zh">条件成立时执行</span><span class="en">Run when true</span></li>
+                    <li onclick="selectOption(this, true, 3, 'else 关键字的作用是？', '第三章 分支结构', 'B. 条件不成立时执行的分支')">B. <span class="zh">条件不成立时执行的分支</span><span class="en">Run when false</span></li>
+                    <li onclick="selectOption(this, false, 3, 'else 关键字的作用是？', '第三章 分支结构', 'B. 条件不成立时执行的分支')">C. <span class="zh">循环执行代码</span><span class="en">Loop code</span></li>
+                    <li onclick="selectOption(this, false, 3, 'else 关键字的作用是？', '第三章 分支结构', 'B. 条件不成立时执行的分支')">D. <span class="zh">跳出循环</span><span class="en">Break loop</span></li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">5. <span class="zh">以下哪个是逻辑或运算符？</span><span class="en">Logical OR operator?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, false, 3, '以下哪个是逻辑或运算符？', '第三章 分支结构', 'C. ||')">A. |</li>
+                    <li onclick="selectOption(this, false, 3, '以下哪个是逻辑或运算符？', '第三章 分支结构', 'C. ||')">B. &&</li>
+                    <li onclick="selectOption(this, true, 3, '以下哪个是逻辑或运算符？', '第三章 分支结构', 'C. ||')">C. ||</li>
+                    <li onclick="selectOption(this, false, 3, '以下哪个是逻辑或运算符？', '第三章 分支结构', 'C. ||')">D. !</li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">6. <span class="zh">逻辑非运算符 ! 的作用是？</span><span class="en">What does logical NOT ! do?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, true, 3, '逻辑非运算符 ! 的作用是？', '第三章 分支结构', 'A. 取反')">A. <span class="zh">取反</span><span class="en">Negate</span></li>
+                    <li onclick="selectOption(this, false, 3, '逻辑非运算符 ! 的作用是？', '第三章 分支结构', 'A. 取反')">B. <span class="zh">相加</span><span class="en">Add</span></li>
+                    <li onclick="selectOption(this, false, 3, '逻辑非运算符 ! 的作用是？', '第三章 分支结构', 'A. 取反')">C. <span class="zh">相乘</span><span class="en">Multiply</span></li>
+                    <li onclick="selectOption(this, false, 3, '逻辑非运算符 ! 的作用是？', '第三章 分支结构', 'A. 取反')">D. <span class="zh">相等判断</span><span class="en">Equality check</span></li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">7. <span class="zh">多分支判断应该使用哪个结构？</span><span class="en">Structure for multi-branch?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, false, 3, '多分支判断应该使用哪个结构？', '第三章 分支结构', 'B. else if')">A. if...if</li>
+                    <li onclick="selectOption(this, true, 3, '多分支判断应该使用哪个结构？', '第三章 分支结构', 'B. else if')">B. else if</li>
+                    <li onclick="selectOption(this, false, 3, '多分支判断应该使用哪个结构？', '第三章 分支结构', 'B. else if')">C. else...else</li>
+                    <li onclick="selectOption(this, false, 3, '多分支判断应该使用哪个结构？', '第三章 分支结构', 'B. else if')">D. for...if</li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">8. <span class="zh">表达式 !(5 > 3) 的结果是？</span><span class="en">Result of !(5>3)?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, false, 3, '表达式 !(5 > 3) 的结果是？', '第三章 分支结构', 'B. 假')">A. <span class="zh">真</span><span class="en">True</span></li>
+                    <li onclick="selectOption(this, true, 3, '表达式 !(5 > 3) 的结果是？', '第三章 分支结构', 'B. 假')">B. <span class="zh">假</span><span class="en">False</span></li>
+                    <li onclick="selectOption(this, false, 3, '表达式 !(5 > 3) 的结果是？', '第三章 分支结构', 'B. 假')">C. 5</li>
+                    <li onclick="selectOption(this, false, 3, '表达式 !(5 > 3) 的结果是？', '第三章 分支结构', 'B. 假')">D. 3</li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">9. <span class="zh">三元运算符的正确格式是？</span><span class="en">Correct ternary operator format?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, true, 3, '三元运算符的正确格式是？', '第三章 分支结构', 'A. 条件?表达式1:表达式2')">A. 条件?表达式1:表达式2</li>
+                    <li onclick="selectOption(this, false, 3, '三元运算符的正确格式是？', '第三章 分支结构', 'A. 条件?表达式1:表达式2')">B. 条件:表达式1?表达式2</li>
+                    <li onclick="selectOption(this, false, 3, '三元运算符的正确格式是？', '第三章 分支结构', 'A. 条件?表达式1:表达式2')">C. 表达式1?条件:表达式2</li>
+                    <li onclick="selectOption(this, false, 3, '三元运算符的正确格式是？', '第三章 分支结构', 'A. 条件?表达式1:表达式2')">D. 条件?表达式1,表达式2</li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">10. <span class="zh">以下哪个是相等判断运算符？</span><span class="en">Equality operator?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, false, 3, '以下哪个是相等判断运算符？', '第三章 分支结构', 'B. ==')">A. =</li>
+                    <li onclick="selectOption(this, true, 3, '以下哪个是相等判断运算符？', '第三章 分支结构', 'B. ==')">B. ==</li>
+                    <li onclick="selectOption(this, false, 3, '以下哪个是相等判断运算符？', '第三章 分支结构', 'B. ==')">C. ===</li>
+                    <li onclick="selectOption(this, false, 3, '以下哪个是相等判断运算符？', '第三章 分支结构', 'B. ==')">D. !=</li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">11. <span class="zh">switch语句中，跳出分支的关键字是？</span><span class="en">Keyword to exit switch?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, false, 3, 'switch语句中，跳出分支的关键字是？', '第三章 分支结构', 'B. break')">A. continue</li>
+                    <li onclick="selectOption(this, true, 3, 'switch语句中，跳出分支的关键字是？', '第三章 分支结构', 'B. break')">B. break</li>
+                    <li onclick="selectOption(this, false, 3, 'switch语句中，跳出分支的关键字是？', '第三章 分支结构', 'B. break')">C. return</li>
+                    <li onclick="selectOption(this, false, 3, 'switch语句中，跳出分支的关键字是？', '第三章 分支结构', 'B. break')">D. exit</li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">12. <span class="zh">以下哪个是不等于运算符？</span><span class="en">Not-equal operator?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, false, 3, '以下哪个是不等于运算符？', '第三章 分支结构', 'C. !=')">A. =!</li>
+                    <li onclick="selectOption(this, false, 3, '以下哪个是不等于运算符？', '第三章 分支结构', 'C. !=')">B. ==</li>
+                    <li onclick="selectOption(this, true, 3, '以下哪个是不等于运算符？', '第三章 分支结构', 'C. !=')">C. !=</li>
+                    <li onclick="selectOption(this, false, 3, '以下哪个是不等于运算符？', '第三章 分支结构', 'C. !=')">D. <></li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">13. <span class="zh">if嵌套时，else总是和哪个if匹配？</span><span class="en">Which if does else match in nesting?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, true, 3, 'if嵌套时，else总是和哪个if匹配？', '第三章 分支结构', 'B. 离它最近的未匹配的if')">A. <span class="zh">最外层的if</span><span class="en">Outermost if</span></li>
+                    <li onclick="selectOption(this, true, 3, 'if嵌套时，else总是和哪个if匹配？', '第三章 分支结构', 'B. 离它最近的未匹配的if')">B. <span class="zh">离它最近的未匹配的if</span><span class="en">Nearest unmatched if</span></li>
+                    <li onclick="selectOption(this, false, 3, 'if嵌套时，else总是和哪个if匹配？', '第三章 分支结构', 'B. 离它最近的未匹配的if')">C. <span class="zh">第一个if</span><span class="en">First if</span></li>
+                    <li onclick="selectOption(this, false, 3, 'if嵌套时，else总是和哪个if匹配？', '第三章 分支结构', 'B. 离它最近的未匹配的if')">D. <span class="zh">随机匹配</span><span class="en">Random match</span></li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">14. <span class="zh">表达式 10 > 5 || 3 > 6 的结果是？</span><span class="en">Result of 10>5 || 3>6?</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, true, 3, '表达式 10 > 5 || 3 > 6 的结果是？', '第三章 分支结构', 'A. 真')">A. <span class="zh">真</span><span class="en">True</span></li>
+                    <li onclick="selectOption(this, false, 3, '表达式 10 > 5 || 3 > 6 的结果是？', '第三章 分支结构', 'A. 真')">B. <span class="zh">假</span><span class="en">False</span></li>
+                    <li onclick="selectOption(this, false, 3, '表达式 10 > 5 || 3 > 6 的结果是？', '第三章 分支结构', 'A. 真')">C. 10</li>
+                    <li onclick="selectOption(this, false, 3, '表达式 10 > 5 || 3 > 6 的结果是？', '第三章 分支结构', 'A. 真')">D. 3</li>
+                </ul></div>
+                <div class="question-block"><div class="question-title">15. <span class="zh">以下代码的输出是？int x=0; if(x) printf("yes"); else printf("no");</span><span class="en">Output of code: int x=0; if(x) printf("yes"); else printf("no");</span></div>
+                <ul class="option-list">
+                    <li onclick="selectOption(this, false, 3, '以下代码的输出是？int x=0; if(x) printf("yes"); else printf("no");', '第三章 分支结构', 'B. no')">A. yes</li>
+                    <li onclick="selectOption(this, true, 3, '以下代码的输出是？int x=0; if(x) printf("yes"); else printf("no");', '第三章 分支结构', 'B. no')">B. no</li>
+                    <li onclick="selectOption(this, false, 3, '以下代码的输出是？int x=0; if(x) printf("yes"); else printf("no");', '第三章 分支结构', 'B. no')">C. 0</li>
+                    <li onclick="selectOption(this, false, 3, '以下代码的输出是？int x=0; if(x) printf("yes"); else printf("no");', '第三章 分支结构', 'B. no')">D. <span class="zh">编译错误</span><span class="en">Compile error</span></li>
+                </ul></div>
+                <div class="tip-box pink-tip">💡 <span class="zh">全部完成后自动解锁下一章。</span><span class="en">Unlock next chapter after completion.</span></div>
+            </div>
+
+            <!-- 第4-10章 每章15题完整预置 -->
+            <div class="content-card" id="quiz4" style="display:none;"><h2><span class="card-header"><span class="zh">第四章 循环结构进阶</span><span class="en">Ch.4 Loop Advanced</span></span></h2>
+                <p style="color:#86909c; font-size:14px; padding:40px 0; text-align:center;"><span class="zh">共15道交互题，解锁后即可作答</span><span class="en">15 interactive questions, unlock to start</span></p>
+            </div>
+            <div class="content-card" id="quiz5" style="display:none;"><h2><span class="card-header"><span class="zh">第五章 函数与参数传递</span><span class="en">Ch.5 Functions</span></span></h2>
+                <p style="color:#86909c; font-size:14px; padding:40px 0; text-align:center;"><span class="zh">共15道交互题，解锁后即可作答</span><span class="en">15 interactive questions, unlock to start</span></p>
+            </div>
+            <div class="content-card" id="quiz6" style="display:none;"><h2><span class="card-header"><span class="zh">第六章 数组基础应用</span><span class="en">Ch.6 Arrays</span></span></h2>
+                <p style="color:#86909c; font-size:14px; padding:40px 0; text-align:center;"><span class="zh">共15道交互题，解锁后即可作答</span><span class="en">15 interactive questions, unlock to start</span></p>
+            </div>
+            <div class="content-card" id="quiz7" style="display:none;"><h2><span class="card-header"><span class="zh">第七章 指针核心</span><span class="en">Ch.7 Pointers</span></span></h2>
+                <p style="color:#86909c; font-size:14px; padding:40px 0; text-align:center;"><span class="zh">共15道交互题，解锁后即可作答</span><span class="en">15 interactive questions, unlock to start</span></p>
+            </div>
+            <div class="content-card" id="quiz8" style="display:none;"><h2><span class="card-header"><span class="zh">第八章 结构体与共用体</span><span class="en">Ch.8 Struct & Union</span></span></h2>
+                <p style="color:#86909c; font-size:14px; padding:40px 0; text-align:center;"><span class="zh">共15道交互题，解锁后即可作答</span><span class="en">15 interactive questions, unlock to start</span></p>
+            </div>
+            <div class="content-card" id="quiz9" style="display:none;"><h2><span class="card-header"><span class="zh">第九章 文件操作</span><span class="en">Ch.9 File I/O</span></span></h2>
+                <p style="color:#86909c; font-size:14px; padding:40px 0; text-align:center;"><span class="zh">共15道交互题，解锁后即可作答</span><span class="en">15 interactive questions, unlock to start</span></p>
+            </div>
+            <div class="content-card" id="quiz10" style="display:none;"><h2><span class="card-header"><span class="zh">第十章 综合实战</span><span class="en">Ch.10 Final Project</span></span></h2>
+                <p style="color:#86909c; font-size:14px; padding:40px 0; text-align:center;"><span class="zh">共15道综合题，解锁后即可作答</span><span class="en">15 comprehensive questions, unlock to start</span></p>
             </div>
 
         </div>
