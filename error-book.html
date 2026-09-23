@@ -23,17 +23,31 @@
     <div class="container">
         <div style="grid-column: 1 / -1;">
             <div class="content-card">
-                <h2><span class="card-header">我的错题</span></h2>
-                <div class="empty-state">
+                <h2><span class="card-header">我的错题</span>
+                    <span style="font-size:13px;color:#86909c;font-weight:normal;">共 <span id="wrongCount">0</span> 道错题</span>
+                </h2>
+                
+                <!-- 空状态 -->
+                <div class="empty-state" id="emptyState">
                     <img src="assets/mascot.png" alt="空状态">
                     <h3>还没有错题记录</h3>
                     <p style="margin-top: 8px; font-size: 14px; color: #86909c;">完成练习后，做错的题目会自动收录到这里</p>
                     <button class="retry-btn" style="margin-top: 20px;" onclick="location.href='practice.html'">去做练习</button>
                 </div>
+
+                <!-- 错题列表 -->
+                <div class="error-list" id="wrongList" style="display:none;"></div>
             </div>
         </div>
     </div>
 
     <img src="assets/mascot.png" class="cat-decor" alt="装饰">
+
+    <script src="js/app.js"></script>
+    <script>
+        // 更新错题数量
+        const data = CLEARN_DATA.init();
+        document.getElementById('wrongCount').textContent = data.wrongQuestions.length;
+    </script>
 </body>
 </html>
