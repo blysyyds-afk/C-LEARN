@@ -1,116 +1,124 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>C-Learn · 学习工作台</title>
-  <link rel="stylesheet" href="css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C-Learn - 我的学习</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-  <header class="navbar">
-    <div class="brand">
-      <img src="assets/mascot.png" alt="布偶猫吉祥物" class="brand-logo" />
-      <span class="brand-name">C-Learn</span>
-    </div>
-    <nav>
-      <a href="index.html" class="active">工作台</a>
-      <a href="course.html">课程</a>
-      <a href="practice.html">练习</a>
-      <a href="wrong-book.html">错题本</a>
-      <a href="review.html">复习</a>
-      <a href="profile.html">我的</a>
-    </nav>
-  </header>
-
-  <main class="dashboard">
-    <section class="hero">
-      <div class="hero-text">
-        <h1>把自学完成成闭环</h1>
-        <p>诊断 · 理解 · 动手 · 回忆 · 纠错 · 复习</p>
-      </div>
-      <div class="status-card">
-        <h2>当前学习状态</h2>
-        <p>水平：<span id="level-text">入门阶段</span></p>
-        <p>今日任务：<span id="today-task">完成第 1 课主动回忆练习</span></p>
-        <p>本周目标：建立最小 C 程序框架能力</p>
-        <button class="btn btn-primary" onclick="location.href='lesson.html'">开始今日学习</button>
-      </div>
-    </section>
-
-    <section class="stats-grid">
-      <div class="stat-card">
-        <h3>连续学习</h3>
-        <p class="stat-number" id="stat-continuous-days">0</p>
-        <p class="stat-label">天</p>
-      </div>
-      <div class="stat-card">
-        <h3>今日学习</h3>
-        <p class="stat-number" id="stat-today-minutes">0</p>
-        <p class="stat-label">分钟</p>
-      </div>
-      <div class="stat-card">
-        <h3>已掌握知识点</h3>
-        <p class="stat-number" id="stat-skills">0</p>
-        <p class="stat-label">个</p>
-      </div>
-      <div class="stat-card">
-        <h3>题目正确率</h3>
-        <p class="stat-number" id="stat-accuracy">0%</p>
-        <p class="stat-label">近 10 题</p>
-      </div>
-    </section>
-
-    <section class="workbench">
-      <div class="today-tasks">
-        <h2>今日学习路径</h2>
-        <ul id="task-list">
-          <li data-task="diagnosis">课前诊断</li>
-          <li data-task="explain">原理讲解</li>
-          <li data-task="practice">引导练习</li>
-          <li data-task="recall">主动回忆</li>
-          <li data-task="review">错因复习</li>
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="assets/mascot.png" alt="logo">
+            <span>C-Learn</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">我的</a></li>
+            <li><a href="lesson.html">学习</a></li>
+            <li><a href="practice.html">练习</a></li>
+            <li><a href="error-book.html">错题本</a></li>
         </ul>
-      </div>
-      <div class="review-queue">
-        <h2>复习队列</h2>
-        <div id="review-list">
-          <p class="empty">暂无待复习内容，完成练习后自动加入。</p>
-        </div>
-      </div>
-    </section>
+    </nav>
 
-    <section class="milestone-section">
-      <h2>学习里程碑</h2>
-      <div class="milestone-bar">
-        <div class="milestone-item active">
-          <span class="dot"></span>
-          <span>输出与变量</span>
-        </div>
-        <div class="milestone-item">
-          <span class="dot"></span>
-          <span>交互式小程序</span>
-        </div>
-        <div class="milestone-item">
-          <span class="dot"></span>
-          <span>条件与循环</span>
-        </div>
-        <div class="milestone-item">
-          <span class="dot"></span>
-          <span>命令行项目</span>
-        </div>
-        <div class="milestone-item">
-          <span class="dot"></span>
-          <span>函数与数组</span>
-        </div>
-      </div>
-    </section>
-  </main>
+    <div class="container">
+        <!-- 侧边栏 -->
+        <aside>
+            <div class="user-card">
+                <img src="assets/mascot.png" class="avatar" alt="头像">
+                <div class="username" id="username" title="点击修改昵称">新同学</div>
+                <div class="user-desc">C语言学习之旅开启中</div>
+                <div class="user-stats">
+                    <div class="stat-item">
+                        <div class="stat-num" id="studyDays">0</div>
+                        <div class="stat-label">学习天数</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num" id="finishedLesson">0</div>
+                        <div class="stat-label">完成课程</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-num" id="rightRate">0%</div>
+                        <div class="stat-label">正确率</div>
+                    </div>
+                </div>
+            </div>
+        </aside>
 
-  <footer class="footer">
-    <p>C-Learn · 面向自学者的任务化学习系统</p>
-  </footer>
+        <!-- 主内容 -->
+        <main>
+            <div class="content-card">
+                <h2>学习进度</h2>
+                <div class="progress-list">
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>基础语法</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>流程控制</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-header">
+                            <span>函数与数组</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-  <script src="js/progress.js"></script>
-  <script src="js/app.js"></script>
+            <div class="content-card">
+                <h2>学习能力曲线</h2>
+                <div class="chart-area" id="chartArea">
+                    <!-- 初始为空，学习后自动生成 -->
+                </div>
+                <div style="display: flex; justify-content: space-around; font-size: 12px; color: #999;">
+                    <span>第1天</span>
+                    <span>第2天</span>
+                    <span>第3天</span>
+                    <span>第4天</span>
+                    <span>第5天</span>
+                    <span>第6天</span>
+                    <span>第7天</span>
+                </div>
+                <p style="text-align: center; color: #bbb; font-size: 13px; margin-top: 16px;">
+                    开始学习后，这里将生成你的能力成长曲线
+                </p>
+            </div>
+
+            <div class="content-card">
+                <h2>推荐课程</h2>
+                <div class="lesson-list">
+                    <div class="lesson-card" onclick="location.href='lesson.html'">
+                        <div class="lesson-title">第一章：C语言入门</div>
+                        <div class="lesson-desc">认识C语言、程序结构与第一个程序</div>
+                        <span class="lesson-tag">入门</span>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="lesson-title">第二章：变量与数据类型</div>
+                        <div class="lesson-desc">整型、浮点型、字符型与变量定义</div>
+                        <span class="lesson-tag">基础</span>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <img src="assets/mascot.png" class="cat-decor" alt="装饰">
+
+    <script src="js/app.js"></script>
 </body>
 </html>
