@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <!-- 导航栏 -->
     <nav class="navbar">
         <div class="logo">
             <img src="assets/mascot.png" alt="logo">
@@ -22,7 +21,6 @@
     </nav>
 
     <div class="container">
-        <!-- 左侧边栏 -->
         <aside>
             <div class="user-card">
                 <img src="assets/mascot.png" class="avatar" alt="头像">
@@ -61,9 +59,25 @@
                     </li>
                 </ul>
             </div>
+
+            <div class="sidebar-section">
+                <h3>学习日历</h3>
+                <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:4px; text-align:center; font-size:12px; color:#86909c;">
+                    <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+                </div>
+                <div style="display:grid; grid-template-columns:repeat(7,1fr); gap:4px; margin-top:8px;">
+                    <div style="height:24px; border-radius:4px; background:#f2f3f5;"></div>
+                    <div style="height:24px; border-radius:4px; background:#f2f3f5;"></div>
+                    <div style="height:24px; border-radius:4px; background:#e8f3ff;"></div>
+                    <div style="height:24px; border-radius:4px; background:#e8f3ff;"></div>
+                    <div style="height:24px; border-radius:4px; background:#165dff;"></div>
+                    <div style="height:24px; border-radius:4px; background:#f2f3f5;"></div>
+                    <div style="height:24px; border-radius:4px; background:#f2f3f5;"></div>
+                </div>
+                <p style="font-size:12px; color:#86909c; margin-top:10px; text-align:center;">今日已学习 0 分钟</p>
+            </div>
         </aside>
 
-        <!-- 右侧主内容 -->
         <main>
             <div class="grid-2">
                 <div class="content-card">
@@ -151,7 +165,7 @@
             </div>
 
             <div class="content-card">
-                <h2><span class="card-header">推荐课程</span></h2>
+                <h2><span class="card-header">课程体系</span></h2>
                 <div class="lesson-list">
                     <div class="lesson-card" onclick="location.href='lesson.html'">
                         <div class="lesson-title">第一章：C语言入门</div>
@@ -163,6 +177,16 @@
                         <div class="lesson-desc">整型、浮点型、字符型与变量定义</div>
                         <span class="lesson-tag">基础</span>
                     </div>
+                    <div class="lesson-card">
+                        <div class="lesson-title">第三章：流程控制</div>
+                        <div class="lesson-desc">if分支、for循环、while循环与嵌套</div>
+                        <span class="lesson-tag">核心</span>
+                    </div>
+                    <div class="lesson-card">
+                        <div class="lesson-title">第四章：函数与数组</div>
+                        <div class="lesson-desc">函数定义、参数传递与数组操作</div>
+                        <span class="lesson-tag">进阶</span>
+                    </div>
                 </div>
             </div>
         </main>
@@ -173,4 +197,3 @@
     <script src="js/app.js"></script>
 </body>
 </html>
-
