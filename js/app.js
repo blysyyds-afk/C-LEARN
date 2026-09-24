@@ -406,8 +406,8 @@ function selectOption(el, isRight, chapter, question, chapterName, answer, expla
         el.style.background = '#f5e9e8';
         el.style.color = '#a85c54';
         el.style.borderColor = '#c17c74';
-        if (question && chapterName) {
-            CLEARN_DATA.addWrongQuestion(question, chapterName, answer, explanation);
+        if (question && chapterName && answer) {
+            CLEARN_DATA.addWrongQuestion(question, chapterName, answer, explanation || '暂无解析');
         }
     }
 
@@ -418,7 +418,7 @@ function selectOption(el, isRight, chapter, question, chapterName, answer, expla
         exp = document.createElement('div');
         exp.className = 'question-explanation';
         exp.style.cssText = 'margin-top:12px; padding:10px 14px; background:#f0f4f9; border-radius:6px; font-size:13px; color:#3a5070;';
-        exp.innerHTML = '<strong>解析：</strong>' + explanation;
+        exp.innerHTML = '<strong>解析：</strong>' + (explanation || '暂无解析');
         block.appendChild(exp);
     }
 
@@ -470,8 +470,4 @@ function selectOption(el, isRight, chapter, question, chapterName, answer, expla
             }
         }, 800);
     }
-}
-
-function toggleQuiz(num) {
-    openQuiz(num);
 }
