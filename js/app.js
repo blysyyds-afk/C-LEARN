@@ -106,14 +106,17 @@ const CLEARN_DATA = {
         }
     },
 
-    // 更新单章正确率
+        // 更新单章正确率
     updateChapterRate(chapter, isRight) {
         const data = this.init();
-        if (!data.chapterRates[chapter]) {
-            data.chapterRates[chapter] = { total: 0, right: 0 };
+        // 学习页题目（chapter=0）不统计单章正确率
+        if (chapter >= 1) {
+            if (!data.chapterRates[chapter]) {
+                data.chapterRates[chapter] = { total: 0, right: 0 };
+            }
+            data.chapterRates[chapter].total++;
+            if (isRight) data.chapterRates[chapter].right++;
         }
-        data.chapterRates[chapter].total++;
-        if (isRight) data.chapterRates[chapter].right++;
         
         data.totalQuestions++;
         if (isRight) data.rightQuestions++;
@@ -126,8 +129,14 @@ const CLEARN_DATA = {
         this.save(data);
         this.renderHome();
         this.renderChart();
-        return Math.round((data.chapterRates[chapter].right / data.chapterRates[chapter].total) * 100);
+        
+        // 返回单章正确率（仅章节练习有效）
+        if (chapter >= 1) {
+            return Math.round((data.chapterRates[chapter].right / data.chapterRates[chapter].total) * 100);
+        }
+        return 0;
     },
+
 
     // 渲染首页
     renderHome() {
