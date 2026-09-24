@@ -26,8 +26,9 @@ const LANG = {
     }
 };
 
-// 全局学习数据
+// 全局学习数据管理
 const CLEARN_DATA = {
+    // 初始化数据
     init() {
         if (!localStorage.getItem('clearn_data')) {
             localStorage.setItem('clearn_data', JSON.stringify({
@@ -40,6 +41,7 @@ const CLEARN_DATA = {
                 rightQuestions: 0,
                 unlockedChapters: [1],
                 finishedChapters: [],
+                chapterRates: {}, // 每章正确率
                 progress: { base: 0, process: 0, function: 0 },
                 wrongQuestions: [],
                 chart: [0,0,0,0,0,0,0],
@@ -53,10 +55,11 @@ const CLEARN_DATA = {
         localStorage.setItem('clearn_data', JSON.stringify(data));
     },
 
-    // 累计学习时长
+    // 累计学习时长 & 天数
     addStudyTime(minutes) {
         const data = this.init();
-        const today = new Date().toLocaleDateString();
+        const today = new Date().toDateString();
+        // 跨天自动+1天
         if (data.lastStudyDate !== today) {
             data.studyDays++;
             data.lastStudyDate = today;
@@ -66,18 +69,27 @@ const CLEARN_DATA = {
         this.renderHome();
     },
 
-    // 解锁下一章
-    unlockNextChapter(current) {
+    // 解锁下一章（正确率≥80%才解锁）
+    tryUnlockNext(chapter) {
         const data = this.init();
-        const next = current + 1;
-        if (next <= 10 && !data.unlockedChapters.includes(next)) {
-            data.unlockedChapters.push(next);
-            if (!data.finishedChapters.includes(current)) {
-                data.finishedChapters.push(current);
-                data.finishedLessons++;
+        const rate = data.chapterRates[chapter] || 0;
+        if (rate >= 80) {
+            const next = chapter + 1;
+            if (next <= 10 && !data.unlockedChapters.includes(next)) {
+                data.unlockedChapters.push(next);
+                if (!data.finishedChapters.includes(chapter)) {
+                    data.finishedChapters.push(chapter);
+                    data.finishedLessons++;
+                }
+                // 更新对应大模块进度
+                if (chapter === 1 || chapter === 2) data.progress.base = Math.min(100, chapter * 50);
+                if (chapter === 3 || chapter === 4) data.progress.process = Math.min(100, (chapter-2) * 50);
+                if (chapter >= 5) data.progress.function = Math.min(100, (chapter-4) * 16.7);
+                this.save(data);
+                return true;
             }
-            this.save(data);
         }
+        return false;
     },
 
     // 添加错题
@@ -85,31 +97,35 @@ const CLEARN_DATA = {
         const data = this.init();
         const exist = data.wrongQuestions.find(q => q.question === question);
         if (!exist) {
-            data.wrongQuestions.push({ question, chapter, rightAnswer: answer, time: new Date().toLocaleDateString() });
+            data.wrongQuestions.unshift({ question, chapter, rightAnswer: answer, time: new Date().toLocaleDateString() });
             this.save(data);
+            this.renderAllErrors();
         }
     },
 
-    // 更新正确率&进度&曲线
-    updateRate(isRight, chapter = 1) {
+    // 更新单章正确率
+    updateChapterRate(chapter, isRight) {
         const data = this.init();
+        if (!data.chapterRates[chapter]) {
+            data.chapterRates[chapter] = { total: 0, right: 0 };
+        }
+        data.chapterRates[chapter].total++;
+        if (isRight) data.chapterRates[chapter].right++;
+        // 计算单章正确率
+        const rate = Math.round((data.chapterRates[chapter].right / data.chapterRates[chapter].total) * 100);
         data.totalQuestions++;
         if (isRight) data.rightQuestions++;
         data.rightRate = data.totalQuestions === 0 ? 0 : 
             Math.round((data.rightQuestions / data.totalQuestions) * 100) + '%';
-
-        // 更新基础语法进度
-        if (chapter === 1) {
-            data.progress.base = Math.min(100, data.progress.base + 5);
-        }
-
+        
         // 更新能力曲线
         const dayIndex = Math.min(6, data.studyDays);
         data.chart[dayIndex] = Math.min(100, data.chart[dayIndex] + (isRight ? 8 : 3));
-
+        
         this.save(data);
         this.renderHome();
         this.renderChart();
+        return rate;
     },
 
     // 渲染首页
@@ -130,11 +146,38 @@ const CLEARN_DATA = {
         const progressBars = document.querySelectorAll('.progress-fill');
         if (progressBars.length >= 3) {
             progressBars[0].style.width = data.progress.base + '%';
-            progressBars[0].parentElement.previousElementSibling.children[1].textContent = data.progress.base + '%';
+            progressBars[0].parentElement.previousElementSibling.children[1].textContent = Math.round(data.progress.base) + '%';
             progressBars[1].style.width = data.progress.process + '%';
-            progressBars[1].parentElement.previousElementSibling.children[1].textContent = data.progress.process + '%';
+            progressBars[1].parentElement.previousElementSibling.children[1].textContent = Math.round(data.progress.process) + '%';
             progressBars[2].style.width = data.progress.function + '%';
-            progressBars[2].parentElement.previousElementSibling.children[1].textContent = data.progress.function + '%';
+            progressBars[2].parentElement.previousElementSibling.children[1].textContent = Math.round(data.progress.function) + '%';
+        }
+
+        // 渲染任务状态
+        this.renderTasks();
+    },
+
+    // 渲染任务状态（变绿灯）
+    renderTasks() {
+        const data = this.init();
+        document.querySelectorAll('.task-list li').forEach((li, index) => {
+            const dot = li.querySelector('.task-dot');
+            if (!dot) return;
+            if (data.tasksDone.includes(index)) {
+                dot.classList.add('done');
+            } else {
+                dot.classList.remove('done');
+            }
+        });
+    },
+
+    // 完成任务
+    completeTask(index) {
+        const data = this.init();
+        if (!data.tasksDone.includes(index)) {
+            data.tasksDone.push(index);
+            this.save(data);
+            this.renderTasks();
         }
     },
 
@@ -144,7 +187,7 @@ const CLEARN_DATA = {
         const chartArea = document.getElementById('chartArea');
         if (!chartArea) return;
         chartArea.innerHTML = '';
-        data.chart.forEach((val, i) => {
+        data.chart.forEach((val) => {
             const bar = document.createElement('div');
             bar.className = 'chart-bar';
             bar.style.height = val + '%';
@@ -152,20 +195,30 @@ const CLEARN_DATA = {
         });
     },
 
+    // 三处错题同步渲染
+    renderAllErrors() {
+        this.renderErrorBook();
+        this.renderLessonErrors();
+        this.renderHomeErrors();
+    },
+
     // 渲染错题本
     renderErrorBook() {
         const data = this.init();
         const listEl = document.getElementById('wrongList');
         const emptyEl = document.getElementById('emptyState');
+        const countEl = document.getElementById('wrongCount');
         if (!listEl) return;
 
         if (data.wrongQuestions.length === 0) {
             emptyEl.style.display = 'block';
             listEl.style.display = 'none';
+            if (countEl) countEl.textContent = 0;
             return;
         }
         emptyEl.style.display = 'none';
         listEl.style.display = 'flex';
+        if (countEl) countEl.textContent = data.wrongQuestions.length;
         listEl.innerHTML = '';
         data.wrongQuestions.forEach((item, index) => {
             const div = document.createElement('div');
@@ -238,14 +291,10 @@ const CLEARN_DATA = {
         const data = this.init();
         data.wrongQuestions.splice(index, 1);
         this.save(data);
-        this.renderErrorBook();
-        this.renderLessonErrors();
-        this.renderHomeErrors();
-        const countEl = document.getElementById('wrongCount');
-        if (countEl) countEl.textContent = data.wrongQuestions.length;
+        this.renderAllErrors();
     },
 
-    // 渲染章节解锁
+    // 渲染所有章节解锁状态
     renderChapterLocks() {
         const data = this.init();
         document.querySelectorAll('.lesson-card[data-chapter]').forEach(card => {
@@ -259,15 +308,13 @@ const CLEARN_DATA = {
     }
 };
 
-// 页面初始化
+// ==================== 页面初始化 ====================
 document.addEventListener('DOMContentLoaded', function() {
     LANG.init();
     CLEARN_DATA.init();
     CLEARN_DATA.renderHome();
     CLEARN_DATA.renderChart();
-    CLEARN_DATA.renderErrorBook();
-    CLEARN_DATA.renderLessonErrors();
-    CLEARN_DATA.renderHomeErrors();
+    CLEARN_DATA.renderAllErrors();
     CLEARN_DATA.renderChapterLocks();
 
     // 每分钟累计1分钟学习时长
@@ -287,13 +334,20 @@ document.addEventListener('click', function(e) {
             e.target.textContent = newName.trim();
         }
     }
+    // 任务点击变完成
+    if (e.target.closest('.task-list li')) {
+        const li = e.target.closest('.task-list li');
+        const list = li.parentElement;
+        const index = Array.from(list.children).indexOf(li);
+        CLEARN_DATA.completeTask(index);
+    }
 });
 
 // 打开章节练习
 function openQuiz(num) {
     const data = CLEARN_DATA.init();
     if (!data.unlockedChapters.includes(num)) {
-        alert('请先完成前一章节练习后解锁 / Complete previous chapter first');
+        alert('请先完成前一章节练习（正确率≥80%）解锁 / Complete previous chapter with ≥80% accuracy');
         return;
     }
     for (let i = 1; i <= 10; i++) {
@@ -324,13 +378,11 @@ function selectOption(el, isRight, chapter, question, chapterName, answer) {
         el.style.borderColor = '#c17c74';
         if (question && chapterName) {
             CLEARN_DATA.addWrongQuestion(question, chapterName, answer);
-            CLEARN_DATA.renderLessonErrors();
-            CLEARN_DATA.renderHomeErrors();
         }
     }
 
-    // 更新进度、曲线、正确率
-    CLEARN_DATA.updateRate(isRight, chapter);
+    // 更新单章正确率 & 全局数据
+    const currentRate = CLEARN_DATA.updateChapterRate(chapter, isRight);
 
     // 检查当前模块是否全部做完
     const questionBlock = el.closest('.content-card');
@@ -342,29 +394,42 @@ function selectOption(el, isRight, chapter, question, chapterName, answer) {
         }
     });
 
-    // 全部做完才跳转
+    // 全部做完才处理
     if (allDone) {
         setTimeout(() => {
-            // 如果是章节练习，解锁下一章
+            // 章节练习：判断是否解锁下一章
             if (chapter >= 1) {
-                CLEARN_DATA.unlockNextChapter(chapter);
+                const unlocked = CLEARN_DATA.tryUnlockNext(chapter);
                 CLEARN_DATA.renderChapterLocks();
+                
+                if (unlocked) {
+                    const tip = document.createElement('div');
+                    tip.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#4a6fa5;color:#fff;padding:12px 24px;border-radius:8px;z-index:999;box-shadow:0 4px 12px rgba(74,11,165,0.3);font-size:14px;';
+                    tip.textContent = '🎉 正确率达标！已解锁下一章，跳转学习中...';
+                    document.body.appendChild(tip);
+                    setTimeout(() => {
+                        tip.remove();
+                        location.href = 'lesson.html';
+                    }, 1500);
+                    return;
+                } else {
+                    const tip = document.createElement('div');
+                    tip.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#c17c74;color:#fff;padding:12px 24px;border-radius:8px;z-index:999;box-shadow:0 4px 12px rgba(193,124,116,0.3);font-size:14px;';
+                    tip.textContent = `本章正确率 ${currentRate}%，需≥80%解锁下一章`;
+                    document.body.appendChild(tip);
+                    setTimeout(() => tip.remove(), 2000);
+                }
             }
 
+            // 学习页模块：滚动到下一模块
             const nextSection = questionBlock.nextElementSibling;
             if (nextSection && nextSection.classList.contains('content-card')) {
                 nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 const tip = document.createElement('div');
-                tip.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#6b9e7d;color:#fff;padding:10px 20px;border-radius:8px;z-index:999;box-shadow:0 4px 12px rgba(107,158,125,0.3);';
+                tip.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#6b9e7d;color:#fff;padding:10px 20px;border-radius:8px;z-index:999;';
                 tip.textContent = '本部分完成 / Section completed';
                 document.body.appendChild(tip);
                 setTimeout(() => tip.remove(), 2000);
-            } else if (chapter >= 1) {
-                const tip = document.createElement('div');
-                tip.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#4a6fa5;color:#fff;padding:10px 20px;border-radius:8px;z-index:999;box-shadow:0 4px 12px rgba(74,111,165,0.3);';
-                tip.textContent = '🎉 本章完成！已解锁下一章 / Chapter complete!';
-                document.body.appendChild(tip);
-                setTimeout(() => tip.remove(), 2500);
             }
         }, 800);
     }
