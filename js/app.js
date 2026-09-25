@@ -26,7 +26,7 @@ const LANG = {
     }
 };
 
-// 全局学习数据管理
+// 全局学习数据
 const CLEARN_DATA = {
     init() {
         if (!localStorage.getItem('clearn_data')) {
@@ -54,7 +54,6 @@ const CLEARN_DATA = {
         localStorage.setItem('clearn_data', JSON.stringify(data));
     },
 
-    // 累计学习时长 & 天数
     addStudyTime(minutes) {
         const data = this.init();
         const today = new Date().toDateString();
@@ -67,7 +66,6 @@ const CLEARN_DATA = {
         this.renderHome();
     },
 
-    // 解锁下一章（正确率≥80%才解锁）
     tryUnlockNext(chapter) {
         const data = this.init();
         const rate = data.chapterRates[chapter] ? 
@@ -81,7 +79,6 @@ const CLEARN_DATA = {
                     data.finishedChapters.push(chapter);
                     data.finishedLessons++;
                 }
-                // 更新对应大模块进度
                 if (chapter === 1 || chapter === 2) data.progress.base = Math.min(100, chapter * 50);
                 if (chapter === 3 || chapter === 4) data.progress.process = Math.min(100, (chapter-2) * 50);
                 if (chapter >= 5) data.progress.function = Math.min(100, (chapter-4) * 16.7);
@@ -92,13 +89,12 @@ const CLEARN_DATA = {
         return false;
     },
 
-    // 添加错题+解析
     addWrongQuestion(question, chapter, answer, explanation) {
         const data = this.init();
         const exist = data.wrongQuestions.find(q => q.question === question);
         if (!exist) {
             data.wrongQuestions.unshift({ 
-                question, chapter, rightAnswer: answer, explanation,
+                question, chapter, rightAnswer: answer, explanation: explanation || '暂无解析',
                 time: new Date().toLocaleDateString() 
             });
             this.save(data);
@@ -106,10 +102,9 @@ const CLEARN_DATA = {
         }
     },
 
-        // 更新单章正确率
     updateChapterRate(chapter, isRight) {
         const data = this.init();
-        // 学习页题目（chapter=0）不统计单章正确率
+        // 学习页题目不统计单章正确率，只更新全局
         if (chapter >= 1) {
             if (!data.chapterRates[chapter]) {
                 data.chapterRates[chapter] = { total: 0, right: 0 };
@@ -129,16 +124,13 @@ const CLEARN_DATA = {
         this.save(data);
         this.renderHome();
         this.renderChart();
-        
-        // 返回单章正确率（仅章节练习有效）
+
         if (chapter >= 1) {
             return Math.round((data.chapterRates[chapter].right / data.chapterRates[chapter].total) * 100);
         }
         return 0;
     },
 
-
-    // 渲染首页
     renderHome() {
         const data = this.init();
         const usernameEl = document.getElementById('username');
@@ -167,7 +159,6 @@ const CLEARN_DATA = {
         this.renderForgetList();
     },
 
-    // 渲染遗忘曲线（只显示已解锁章节）
     renderForgetList() {
         const data = this.init();
         const list = document.getElementById('forgetList');
@@ -201,7 +192,6 @@ const CLEARN_DATA = {
         list.innerHTML = html;
     },
 
-    // 渲染任务状态
     renderTasks() {
         const data = this.init();
         document.querySelectorAll('.task-list li').forEach((li, index) => {
@@ -224,7 +214,6 @@ const CLEARN_DATA = {
         }
     },
 
-    // 渲染能力曲线
     renderChart() {
         const data = this.init();
         const chartArea = document.getElementById('chartArea');
@@ -238,7 +227,6 @@ const CLEARN_DATA = {
         });
     },
 
-    // 三处错题同步渲染
     renderAllErrors() {
         this.renderErrorBook();
         this.renderLessonErrors();
@@ -393,8 +381,11 @@ function openQuiz(num) {
         const q = document.getElementById('quiz' + i);
         if (q) q.style.display = 'none';
     }
-    document.getElementById('quiz' + num).style.display = 'block';
-    document.getElementById('quiz' + num).scrollIntoView({ behavior: 'smooth', block: 'start' });
+    const target = document.getElementById('quiz' + num);
+    if (target) {
+        target.style.display = 'block';
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
 }
 
 // 全局选项作答
@@ -416,11 +407,11 @@ function selectOption(el, isRight, chapter, question, chapterName, answer, expla
         el.style.color = '#a85c54';
         el.style.borderColor = '#c17c74';
         if (question && chapterName && answer) {
-            CLEARN_DATA.addWrongQuestion(question, chapterName, answer, explanation || '暂无解析');
+            CLEARN_DATA.addWrongQuestion(question, chapterName, answer, explanation);
         }
     }
 
-    // 显示本题解析
+    // 显示解析
     const block = el.closest('.question-block');
     let exp = block.querySelector('.question-explanation');
     if (!exp) {
@@ -433,7 +424,7 @@ function selectOption(el, isRight, chapter, question, chapterName, answer, expla
 
     const currentRate = CLEARN_DATA.updateChapterRate(chapter, isRight);
 
-    // 检查当前模块是否全部做完
+    // 检查是否全部做完
     const questionBlock = el.closest('.content-card');
     const allQuestions = questionBlock.querySelectorAll('.question-block');
     let allDone = true;
@@ -451,7 +442,7 @@ function selectOption(el, isRight, chapter, question, chapterName, answer, expla
                 
                 if (unlocked) {
                     const tip = document.createElement('div');
-                    tip.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#4a6fa5;color:#fff;padding:12px 24px;border-radius:8px;z-index:999;box-shadow:0 4px 12px rgba(74,11,165,0.3);font-size:14px;';
+                    tip.style.cssText = 'position:fixed;top:80px;left:50%;transform:translateX(-50%);background:#4a6fa5;color:#fff;padding:12px 24px;border-radius:8px;z-index:999;box-shadow:0 4px 12px rgba(74,111,165,0.3);font-size:14px;';
                     tip.textContent = '🎉 正确率达标！已解锁下一章，跳转学习中...';
                     document.body.appendChild(tip);
                     setTimeout(() => {
@@ -479,4 +470,8 @@ function selectOption(el, isRight, chapter, question, chapterName, answer, expla
             }
         }, 800);
     }
+}
+
+function toggleQuiz(num) {
+    openQuiz(num);
 }
