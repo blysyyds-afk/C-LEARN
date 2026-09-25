@@ -325,17 +325,16 @@ const CLEARN_DATA = {
     },
 
     renderChapterLocks() {
-        const data = this.init();
-        document.querySelectorAll('.lesson-card[data-chapter]').forEach(card => {
-            const ch = parseInt(card.dataset.chapter);
-            if (data.unlockedChapters.includes(ch)) {
-                card.classList.remove('locked');
-                const lock = card.querySelector('.lock-icon');
-                if (lock) lock.remove();
-            }
-        });
+  const data = this.init();
+  document.querySelectorAll('.lesson-card[data‑chapter]').forEach(card => {
+    const ch = parseInt(card.dataset.chapter)
+    if ((data.unlockedChapters || []).includes(ch)) {
+      card.classList.remove('locked');
+      const lock = card.querySelector('.lock');
+      if (lock) lock.remove();
     }
-};
+  });
+}
 
 // 页面初始化
 document.addEventListener('DOMContentLoaded', function() {
