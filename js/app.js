@@ -337,18 +337,18 @@ const CLEARN_DATA = {
 }
 
 // 页面初始化
-document.addEventListener('DOMContentLoaded', function() {
-    LANG.init();
-    CLEARN_DATA.init();
-    CLEARN_DATA.renderHome();
-    CLEARN_DATA.renderChart();
-    CLEARN_DATA.renderAllErrors();
-    CLEARN_DATA.renderChapterLocks();
-
-    setInterval(() => {
-        CLEARN_DATA.addStudyTime(1);
-    }, 60000);
-});
+ renderChapterLocks() {
+        const data = this.init();
+        document.querySelectorAll('.lesson-card[data-chapter]').forEach(card => {
+            const ch = parseInt(card.dataset.chapter);
+            if (data.unlockedChapters.includes(ch)) {
+                card.classList.remove('locked');
+                const lock = card.querySelector('.lock-icon');
+                if (lock) lock.remove();
+            }
+        });
+    }
+};
 
 // 用户名编辑
 document.addEventListener('click', function(e) {
